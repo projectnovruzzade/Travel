@@ -1,0 +1,22 @@
+// ! COMPONENTS STYLE
+
+header {
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+}
+
+header nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 4.5rem;
+  z-index: 1000;
+}
+
+@media (max-width: 991px) {
+  header nav {
+    padding: 1rem 2rem;
+  }
+}
+
