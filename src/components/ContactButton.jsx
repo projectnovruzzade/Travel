@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './ContactButton.css';
 
 const ContactButton = () => {
-  const phoneNumber = "994503362820"; // Əlaqə nömrənizi daxil edin
+  const phoneNumber = "994XXXXXXXXX"; // Əlaqə nömrənizi daxil edin
   const message = "Salam, mən saytdan yazıram.";
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 
