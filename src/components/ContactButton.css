@@ -1,0 +1,48 @@
+.contact-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.contact-btn {
+  background-color: #D79A4D; /* WhatsApp rəngi */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.contact-btn:hover {
+  background-color: #128C7E;
+}
+
+.fallback-message {
+  margin-top: 15px;
+  padding: 10px;
+  border: 1px dashed #ccc;
+  text-align: center;
+  background: #f9f9f9;
+}
+
+.phone-number {
+  display: block;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+  margin: 5px 0;
+  user-select: all; /* User nömrəni asanlıqla seçə bilsin */
+}
+
+.copy-btn {
+  font-size: 0.8rem;
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+}
