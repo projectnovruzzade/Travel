@@ -7,12 +7,15 @@ import grow_icon from "../../assets/icons/grow-icon.svg";
 import support_icon from "../../assets/icons/support-icon.svg";
 import bgImage1 from "../../assets/images/background-overlay.png";
 import bgImage2 from "../../assets/images/background-overlay_2.png";
+import bgImage3 from "../../assets/images/background-overlay_3.png";
+import bgImage4 from "../../assets/images/background-overlay_4.png";
+import bgImage5 from "../../assets/images/background-overlay_5.png";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade } from "swiper/modules";
 import "swiper/swiper-bundle.css";
 
-const backgroundImages = [bgImage1, bgImage2];
+const backgroundImages = [bgImage1, bgImage2, bgImage3, bgImage4, bgImage5];
 
 const Welcome = () => {
   return (
