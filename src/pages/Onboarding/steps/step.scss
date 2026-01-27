@@ -1,0 +1,81 @@
+@import "../../../index.scss";
+
+.step-title {
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.travel-style-content {
+  display: flex;
+  margin-top: 50px;
+  gap: 3rem;
+  justify-content: center;
+}
+
+.travel-style-content .content-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  cursor: pointer;
+}
+
+.content-item .img-box {
+  border-radius: 50%;
+  transition: 0.2s all ease-in-out;
+  border: 3px solid transparent;
+}
+
+.content-item .img-box.active {
+  border: 3px solid $yellow-color;
+}
+
+.content-item .item-title.active {
+  color: $yellow-color;
+  font-size: 0.9rem;
+}
+
+.back a {
+  display: inline-flex;
+  color: #fff;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  font-size: 0.8rem;
+  position: relative;
+  z-index: 3;
+}
+
+@media (max-width: 768px) {
+  .content-item .img-box img {
+    width: 180px;
+  }
+}
+
+@media (max-width: 500px) {
+  .content-item .img-box img {
+    width: 130px;
+  }
+
+  .content-item .item-title {
+    font-size: 0.8rem;
+  }
+
+  .step-navigation .btn {
+    padding: 8px 2rem;
+  }
+
+  .step-navigation div {
+    margin: 0 !important;
+  }
+}
+
+@media (max-width: 375px) {
+  .content-item .img-box img {
+    width: 100px;
+  }
+  .step-navigation .btn {
+    padding: 8px 1.7rem;
+  }
+}

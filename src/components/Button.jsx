@@ -6,6 +6,7 @@ const Button = ({ content, bg_color, text_color }) => {
     yellowMain: "#D79A4D",
     yellowText: "#AC7B3E",
     secondaryText: "#505050",
+    secondaryBtn: "#7C7C7C",
 
     blueDark: "#0A1030",
     blueButton: "#1D3557",

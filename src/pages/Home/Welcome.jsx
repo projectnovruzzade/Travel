@@ -53,7 +53,7 @@ const Welcome = () => {
               contemporary luxury with us.
             </p>
           </div>
-          <Link to="/destinations">
+          <Link to="/onboarding">
             <Button
               content="Plan Your Journey"
               bg_color={"yellowMain"}

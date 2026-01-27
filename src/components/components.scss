@@ -1,17 +1,16 @@
 // ! COMPONENTS STYLE
 
-
 header {
-  position: fixed;
+  position: absolute;
   width: 100%;
-  z-index: 1000;
+  z-index: 3;
 }
 
 header nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.5rem 4.5rem;
+  padding: 0 4.5rem;
   z-index: 1000;
 }
 
@@ -21,8 +20,27 @@ header nav {
   }
 }
 
-
 .btn:hover {
-  background-color: #AC7B3E !important;
+  background-color: #ac7b3e !important;
   transition: 0.3s;
+}
+
+.logo-part {
+  margin-top: 10px;
+}
+
+.logo-part .logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #fff;
+
+  span {
+    font-family: "Almendra", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
 }

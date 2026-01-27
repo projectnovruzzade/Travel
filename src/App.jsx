@@ -4,7 +4,7 @@ import UserLayout from './layout/UserLayout.jsx'
 import "./index.scss";
 
 import Home from './pages/Home/index.jsx'
-import About from './pages/Home/About.jsx'
+import Onboarding from './pages/Onboarding/index.jsx'
 
 import AdminLayout from './layout/AdminLayout'
 
@@ -18,7 +18,7 @@ function App() {
         </Route>
         <Route path='/' element={<UserLayout />} >
           <Route index element={<Home />} />
-          <Route path='about' element={<About />} />
+          <Route path='onboarding' element={<Onboarding />} />
         </Route>
       </Routes>
     </>
