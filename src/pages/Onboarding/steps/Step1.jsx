@@ -1,5 +1,5 @@
 import "./step.scss"
-import { useOnboarding } from "../../../Context/OnboardingContext";
+import { useOnboarding } from "../../../context/OnboardingContext";
 import ActiveTravel from "../../../assets/images/active-travel.png";
 import PassiveTravel from "../../../assets/images/passive-travel.png";
 

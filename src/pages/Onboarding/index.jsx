@@ -7,7 +7,7 @@ import bgImage3 from "../../assets/images/background-overlay_3.png";
 import Button from "../../components/Button";
 import Chevron from "../../assets/icons/chevron.png";
 
-import { OnboardingProvider } from "../../Context/OnboardingContext";
+import { OnboardingProvider } from "../../context/OnboardingContext";
 import usePageTitle from "../../hooks/usePageTitle";
 
 import Step1 from "./steps/Step1";
