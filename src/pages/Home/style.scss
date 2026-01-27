@@ -123,6 +123,9 @@
   text-align: right;
 }
 
+
+
+
 @media (max-width: 991px) {
   #home .container {
     padding: 2rem 1rem;
@@ -178,6 +181,10 @@
   .footer-features .feature-item .text {
     flex: inherit;
   }
+
+  .main-btn-link button {
+    width: 280px;
+}
 }
 
 // ! about section styles

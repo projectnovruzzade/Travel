@@ -53,7 +53,7 @@ const Welcome = () => {
               contemporary luxury with us.
             </p>
           </div>
-          <Link to="/onboarding">
+          <Link to="/onboarding" className="main-btn-link">
             <Button
               content="Plan Your Journey"
               bg_color={"yellowMain"}

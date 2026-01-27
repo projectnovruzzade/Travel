@@ -13,7 +13,7 @@ const Header = () => {
             </div>
             <div className="menu-part">
 
-                <Link to="/">
+                <Link to="/" className='contact-link'>
                     <Button content="Contact Us" bg_color={"yellowMain"} text_color={"#fff"} />
                 </Link>
                 
