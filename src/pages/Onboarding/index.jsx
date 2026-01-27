@@ -85,7 +85,7 @@ const Onboarding = () => {
                   }
                 >
                   <Button
-                    content="Previous"
+                    content="Back"
                     bg_color={"secondaryBtn"}
                     text_color={"#fff"}
                   />

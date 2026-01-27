@@ -88,6 +88,17 @@
   padding: 10px 3rem;
 }
 
+
+.terms {
+  margin-top: 1rem;
+  font-size: 0.8rem;
+  color: #fff;
+
+  a {
+    color: $yellow-color;
+  }
+}
+
 #home .footer-features {
   bottom: 2rem;
   width: 90%;
@@ -177,9 +188,12 @@
   }
   .footer-features .feature-item .icon {
     transform: scale(0.6);
+    flex: 1;
   }
   .footer-features .feature-item .text {
     flex: inherit;
+    flex: 2;
+    text-align: center;
   }
 
   .main-btn-link button {

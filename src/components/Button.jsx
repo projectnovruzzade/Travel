@@ -1,7 +1,7 @@
 import React from "react";
 import "./components.scss";
 
-const Button = ({ content, bg_color, text_color }) => {
+const Button = ({ content, bg_color, text_color, icon_content }) => {
   const colors = {
     yellowMain: "#D79A4D",
     yellowText: "#AC7B3E",
@@ -23,6 +23,12 @@ const Button = ({ content, bg_color, text_color }) => {
       style={{ backgroundColor: colors[bg_color], color: text_color, cursor: "pointer", border: "none", outline: "none" }}
     >
       {content}
+      {
+        icon_content ?  <img src={icon_content} style={{
+          marginLeft: "5px"
+        }} alt="" /> : null
+      }
+     
     </button>
   );
 };

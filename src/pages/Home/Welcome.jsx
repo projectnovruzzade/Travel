@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import ai_icon from "../../assets/icons/ai-icon.svg";
 import grow_icon from "../../assets/icons/grow-icon.svg";
 import support_icon from "../../assets/icons/support-icon.svg";
+import magic_icon from "../../assets/icons/magic-icon.svg";
 import bgImage1 from "../../assets/images/background-overlay.png";
 import bgImage2 from "../../assets/images/background-overlay_2.png";
 import bgImage3 from "../../assets/images/background-overlay_3.png";
@@ -55,18 +56,24 @@ const Welcome = () => {
           </div>
           <Link to="/onboarding" className="main-btn-link">
             <Button
-              content="Plan Your Journey"
+              content={`Plan Your Journey  `}
+              icon_content={magic_icon}
               bg_color={"yellowMain"}
               text_color={"#fff"}
             />
           </Link>
+          <p className="terms">
+            By continuing, you agree to our <Link to="/terms">Terms of Service and Privacy Policy.</Link>
+          </p>
         </div>
         <div className="footer-features">
           <div className="feature-item">
             <span className="icon">
               <img src={ai_icon} alt="" />
             </span>
-            <span className="text">Design your journey with the power of AI</span>
+            <span className="text">
+              Design your journey with the power of AI
+            </span>
           </div>
           <div className="feature-item">
             <span className="icon">
