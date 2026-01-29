@@ -1,7 +1,7 @@
 import React from "react";
 import "./components.scss";
 
-const Button = ({ content, bg_color, text_color, icon_content }) => {
+const Button = ({ content, bg_color, text_color, icon_content}) => {
   const colors = {
     yellowMain: "#D79A4D",
     yellowText: "#AC7B3E",

@@ -1,20 +1,20 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import "./style.scss";
+import toast from "react-hot-toast";
 
-import { Link, useSearchParams, useNavigate } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 
 import bgImage3 from "../../assets/images/background-overlay_3.png";
 import Button from "../../components/Button";
 import Chevron from "../../assets/icons/chevron.png";
 
-import { OnboardingProvider } from "../../context/OnboardingContext";
+import { useOnboarding } from "../../context/OnboardingContext";
 import usePageTitle from "../../hooks/usePageTitle";
 
 import Step1 from "./steps/Step1";
 import Step2 from "./steps/Step2";
 import Step3 from "./steps/Step3";
 import Step4 from "./steps/Step4";
-
 
 const steps = [
   { label: "1", component: <Step1 /> },
@@ -26,7 +26,7 @@ const steps = [
 const Onboarding = () => {
   usePageTitle("Onboarding");
 
-  const navigate = useNavigate();  
+  const { onboardingData, updateData } = useOnboarding();
   const [searchParams, setSearchParams] = useSearchParams();
   const stepParam = parseInt(searchParams.get("step"));
   const currentStep = stepParam >= 1 && stepParam <= 4 ? stepParam : 1;
@@ -35,10 +35,49 @@ const Onboarding = () => {
     if (!searchParams.get("step")) {
       setSearchParams({ step: "1" }, { replace: true });
     }
+
+
+    
   }, []);
 
+  // Hər step üçün validasiya
+  const isStepValid = () => {
+    switch (currentStep) {
+      case 1:
+        return onboardingData.travelStyle !== null;
+      case 2:
+        return onboardingData.travelCompanion !== null;
+      case 3:
+        return onboardingData.step3 !== null;
+      default:
+        return true;
+    }
+  };
+
+  // Hər step üçün xəta mesajları
+  const getErrorMessage = () => {
+    switch (currentStep) {
+      case 1:
+        return "Zəhmət olmasa səyahət stilinizi seçin!";
+      case 2:
+        return "Zəhmət olmasa seçim edin!";
+      case 3:
+        return "Zəhmət olmasa seçim edin!";
+      default:
+        return "";
+    }
+  };
+
+  const handleNext = () => {
+    if (!isStepValid()) {
+      toast.error(getErrorMessage());
+    } else {
+      setSearchParams({ step: String(currentStep + 1) });
+    }
+  };
+
   return (
-    <OnboardingProvider>
+    <>
       <section id="onboarding">
         <div
           className="onboarding-bg"
@@ -46,12 +85,12 @@ const Onboarding = () => {
         />
 
         <div className="onboarding-content">
-            <div className="back">
-                <Link to="/">   
-                    <img src={Chevron} alt="Chevron Left" />
-                   Back to Home
-                </Link>
-            </div>
+          <div className="back" onClick={() => updateData("travelStyle", null)}>
+            <Link to="/">
+              <img src={Chevron} alt="Chevron Left" />
+              Back to Home
+            </Link>
+          </div>
           <div className="onboarding-container">
             <div className="step-progress">
               <div className="indicator-content">
@@ -79,7 +118,7 @@ const Onboarding = () => {
             <div className="step-navigation">
               {currentStep > 1 && (
                 <div
-                className="prev-button-content"
+                  className="prev-button-content"
                   onClick={() =>
                     setSearchParams({ step: String(currentStep - 1) })
                   }
@@ -88,28 +127,33 @@ const Onboarding = () => {
                     content="Back"
                     bg_color={"secondaryBtn"}
                     text_color={"#fff"}
+                    is_active={true}
                   />
                 </div>
               )}
               {currentStep < 4 && (
-                <div
-                className="next-button-content"
-                  onClick={() =>
-                    setSearchParams({ step: String(currentStep + 1) })
-                  }
-                >
-                  <Button
-                    content="Next"
-                    bg_color={"yellowMain"}
-                    text_color={"#fff"}
-                  />
+                <div className="next-button-content" onClick={handleNext}>
+                  <button
+                    style={{
+                      backgroundColor: isStepValid() ? "#d79a4d" : "#a0a0a0",
+                      color: "#fff",
+                      border: "none",
+                      outline: "none",
+                      padding: "10px 3rem",
+                      borderRadius: "16px",
+                      cursor: isStepValid() ? "pointer" : "not-allowed",
+                      opacity: isStepValid() ? 1 : 0.6,
+                    }}
+                  >
+                    Next
+                  </button>
                 </div>
               )}
             </div>
           </div>
         </div>
       </section>
-    </OnboardingProvider>
+    </>
   );
 };
 

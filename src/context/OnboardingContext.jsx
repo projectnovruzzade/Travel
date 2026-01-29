@@ -4,8 +4,8 @@ const OnboardingContext = createContext();
 
 export const OnboardingProvider = ({ children }) => {
   const [onboardingData, setOnboardingData] = useState({
-    travelStyle: null,  // step 1
-    step2: null,        // step 2
+    travelStyle: null,       // step 1
+    travelCompanion: null,   // step 2: exampple { type, adults, children }
     step3: null,        // step 3
     step4: null,        // step 4
   });
