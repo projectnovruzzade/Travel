@@ -1,4 +1,3 @@
-
 // ! DEFAULT RESET CODES
 * {
   font-family: "Inter", sans-serif;
@@ -9,26 +8,36 @@
 }
 
 a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
-ul, li {
-    list-style: none;
+ul,
+li {
+  list-style: none;
+}
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
 }
 
 // ! COLOR CODES
-$yellow-color: #D79A4D; 
-$yellow-color-text: #AC7B3E;
+$yellow-color: #d79a4d;
+$yellow-color-text: #ac7b3e;
 
 $secondary-text: #505050;
-$secondart-btn: #7C7C7C;
+$secondart-btn: #7c7c7c;
 
-$blue-dark: #0A1030;
-$blue-btn: #1D3557;
-$blue-orginal: #155DFC;
-$blue-secondary: #DBEAFE;
-$blue-text:#1447E6;
+$blue-dark: #0a1030;
+$blue-btn: #1d3557;
+$blue-orginal: #155dfc;
+$blue-secondary: #dbeafe;
+$blue-text: #1447e6;
 
-$green-orginal: #00A63E;
-
-
+$green-orginal: #00a63e;

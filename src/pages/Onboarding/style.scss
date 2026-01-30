@@ -34,6 +34,7 @@
   flex-direction: column;
   margin: 0 auto;
   margin-top: 80px;
+  margin-bottom: 40px;
 }
 
 .onboarding-container {
@@ -141,6 +142,17 @@
 .step-navigation .next-button-content {
   float: right;
   margin-right: 10px;
+}
+
+.step-navigation .finish-button button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: .2s all;
+
+  &:hover {
+    background-color:  #ac7b3e!important;
+  }
 }
 
 .travel-option-content {

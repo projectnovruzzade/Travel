@@ -1,11 +1,49 @@
-import React from 'react'
+import { useEffect, useState } from "react";
+import TravelOption from "../../../components/TravelOption";
+import { useOnboarding } from "../../../context/OnboardingContext";
+
+const interests = ["Nature", "City", "Adventure", "History", "Gastronomy", "Culture"];
 
 const Step3 = () => {
+  const [selectedInterests, setSelectedInterests] = useState([]);
+  const { updateData, onboardingData } = useOnboarding();
+
+  const handleInterestClick = (interest) => {
+    setSelectedInterests((prev) =>
+      prev.includes(interest)
+        ? prev.filter((item) => item !== interest)
+        : [...prev, interest]
+    );
+  };
+
+  useEffect(() => {
+    updateData("travelInterest", selectedInterests);
+    console.log(onboardingData);
+    
+  }, [selectedInterests]);
+
   return (
     <div className="step-content">
-      {/* Step 3 content */}
+      <div className="step-title">What are your interests?</div>
+      <div className="travel-interest-content">
+        <div className="interest-wrapper">
+          {interests.map((interest) => (
+            <div
+              key={interest}
+              className="option"
+              onClick={() => handleInterestClick(interest)}
+            >
+              <TravelOption
+                content={interest}
+                icon_type={interest}
+                className={selectedInterests.includes(interest) ? "active" : ""}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Step3
+export default Step3;

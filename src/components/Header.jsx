@@ -1,6 +1,6 @@
 import React from 'react'
 import "./components.scss";
-import { Link } from 'react-router-dom';
+
 import Logo from './Logo';
 import Button from './Button';
 
@@ -13,9 +13,9 @@ const Header = () => {
             </div>
             <div className="menu-part">
 
-                <Link to="/" className='contact-link'>
+                <a href="https://wa.me/994558246769" target="_blank" rel="noopener noreferrer" className='contact-link'>
                     <Button content="Contact Us" bg_color={"yellowMain"} text_color={"#fff"} />
-                </Link>
+                </a>
                 
             </div>
         </nav>

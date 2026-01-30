@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import "./style.scss";
+import MagicIcon from "../../assets/icons/magic-icon.svg";
 import toast from "react-hot-toast";
 
 import { Link, useSearchParams } from "react-router-dom";
@@ -35,9 +36,6 @@ const Onboarding = () => {
     if (!searchParams.get("step")) {
       setSearchParams({ step: "1" }, { replace: true });
     }
-
-
-    
   }, []);
 
   // Hər step üçün validasiya
@@ -48,7 +46,16 @@ const Onboarding = () => {
       case 2:
         return onboardingData.travelCompanion !== null;
       case 3:
-        return onboardingData.step3 !== null;
+        return (
+          onboardingData.travelInterest &&
+          onboardingData.travelInterest.length > 2
+        );
+      case 4:
+        return (
+          onboardingData.budgetOption !== null &&
+          onboardingData.tripDays !== null &&
+          onboardingData.tripDays > 0
+        );
       default:
         return true;
     }
@@ -62,7 +69,7 @@ const Onboarding = () => {
       case 2:
         return "Zəhmət olmasa seçim edin!";
       case 3:
-        return "Zəhmət olmasa seçim edin!";
+        return "Zəhmət olmasa ən azı 3 maraq sahəsi seçin!";
       default:
         return "";
     }
@@ -131,7 +138,7 @@ const Onboarding = () => {
                   />
                 </div>
               )}
-              {currentStep < 4 && (
+              {currentStep < 4 ? (
                 <div className="next-button-content" onClick={handleNext}>
                   <button
                     style={{
@@ -146,6 +153,26 @@ const Onboarding = () => {
                     }}
                   >
                     Next
+                  </button>
+                </div>
+              ) : (
+                <div className="next-button-content finish-button">
+                  <button
+                    style={{
+                      backgroundColor: isStepValid() ? "#d79a4d" : "#a0a0a0",
+                      color: "#fff",
+                      border: "none",
+                      outline: "none",
+                      padding: "10px 3rem",
+                      borderRadius: "16px",
+                      cursor: isStepValid() ? "pointer" : "not-allowed",
+                      opacity: isStepValid() ? 1 : 0.6,
+                    }}
+                    disabled={!isStepValid()}
+                    onClick={() => console.log("Onboarding Data:", onboardingData)}
+                  >
+                    <img src={MagicIcon} alt="" />
+                    Get Your Plan
                   </button>
                 </div>
               )}

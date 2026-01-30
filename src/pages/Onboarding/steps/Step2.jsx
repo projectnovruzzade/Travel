@@ -20,7 +20,7 @@ const Step2 = () => {
   const handlerSoloClick = () => setCompanionData("Solo", 1, 0);
   const handlerCoupleClick = () => setCompanionData("Couple", 2, 0);
   const handlerFriendsClick = () => setCompanionData("Friends", 1, 0);
-  const handlerFamilyClick = () => setCompanionData("Family", 2, 1);
+  const handlerFamilyClick = () => setCompanionData("Family", 2, 0);
 
   const setAdultsCounter = (fn) => {
     setCompanionData(selectedOption, fn(adultsCounter), childrenCounter);
@@ -93,7 +93,7 @@ const Step2 = () => {
               <button
                 className="counter-btn"
                 onClick={() =>
-                  setAdultsCounter((prev) => Math.min(10, prev + 1))
+                  setAdultsCounter((prev) => Math.min(30, prev + 1))
                 }
               >
                 +
@@ -108,7 +108,7 @@ const Step2 = () => {
               <button
                 className="counter-btn"
                 onClick={() =>
-                  setChildrenCounter((prev) => Math.max(1, prev - 1))
+                  setChildrenCounter((prev) => Math.max(0, prev - 1))
                 }
               >
                 -
@@ -117,7 +117,7 @@ const Step2 = () => {
               <button
                 className="counter-btn"
                 onClick={() =>
-                  setChildrenCounter((prev) => Math.min(10, prev + 1))
+                  setChildrenCounter((prev) => Math.min(30, prev + 1))
                 }
               >
                 +
