@@ -5,8 +5,8 @@ import { useOnboarding } from "../../../context/OnboardingContext";
 const interests = ["Nature", "City", "Adventure", "History", "Gastronomy", "Culture"];
 
 const Step3 = () => {
-  const [selectedInterests, setSelectedInterests] = useState([]);
   const { updateData, onboardingData } = useOnboarding();
+  const [selectedInterests, setSelectedInterests] = useState(onboardingData.travelInterest || []);
 
   const handleInterestClick = (interest) => {
     setSelectedInterests((prev) =>
