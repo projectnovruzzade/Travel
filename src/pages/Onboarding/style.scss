@@ -229,7 +229,7 @@
 
 @media (max-width: 500px) {
   .onboarding-content {
-    width: 95%;
+    width: 98%;
     margin-top: 100px;
   }
 
@@ -244,4 +244,15 @@
   .travel-option-content .travel-opt-btn img {
     width: 40px;
   }
+}
+
+
+@media (max-width: 400px) {
+  .onboarding-content{
+    width: 98%;
+  }
+  .onboarding-container {
+    padding: 1.5rem 1rem;
+  }
+  
 }

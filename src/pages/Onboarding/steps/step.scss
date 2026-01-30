@@ -69,6 +69,10 @@
   .step-navigation div {
     margin: 0 !important;
   }
+
+  .counter-controls {
+    gap: 0.5rem;
+  }
 }
 
 @media (max-width: 375px) {
