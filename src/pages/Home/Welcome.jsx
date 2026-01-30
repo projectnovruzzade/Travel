@@ -12,11 +12,23 @@ import bgImage3 from "../../assets/images/background-overlay_3.png";
 import bgImage4 from "../../assets/images/background-overlay_4.png";
 import bgImage5 from "../../assets/images/background-overlay_5.png";
 
+
+// ! api olaraq api.get() api.put() olaraq istifade edesen
+// ! fs
+import api from "../../services/api";
+
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade } from "swiper/modules";
 import "swiper/swiper-bundle.css";
 
 const backgroundImages = [bgImage1, bgImage2, bgImage3, bgImage4, bgImage5];
+
+const handlerPlanJourney = () => {
+  // ! bura start journey klik edende bu function handle olacaq
+   api.get("todos/1").then((response) => {
+     console.log("API Response:", response);
+   });
+}
 
 const Welcome = () => {
   return (
@@ -54,7 +66,7 @@ const Welcome = () => {
               contemporary luxury with us.
             </p>
           </div>
-          <Link to="/onboarding" className="main-btn-link">
+          <Link to="/onboarding" className="main-btn-link" onClick={handlerPlanJourney}>
             <Button
               content={`Plan Your Journey  `}
               icon_content={magic_icon}
