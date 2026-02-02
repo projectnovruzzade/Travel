@@ -48,6 +48,10 @@ const Step3 = () => {
           ))}
         </div>
       </div>
+      <p style={{
+        fontSize: "0.9rem",
+        marginTop:"5px"
+      }}>*Please select up to 3 options.</p>
     </div>
   );
 };

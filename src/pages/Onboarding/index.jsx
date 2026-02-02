@@ -48,6 +48,7 @@ const Onboarding = () => {
       case 3:
         return (
           onboardingData.travelInterest &&
+          onboardingData.travelInterest.length >= 1 &&
           onboardingData.travelInterest.length <= 3
         );
       case 4:
