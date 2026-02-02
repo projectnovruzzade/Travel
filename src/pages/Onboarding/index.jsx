@@ -48,7 +48,7 @@ const Onboarding = () => {
       case 3:
         return (
           onboardingData.travelInterest &&
-          onboardingData.travelInterest.length > 2
+          onboardingData.travelInterest.length <= 3
         );
       case 4:
         return (
@@ -69,7 +69,7 @@ const Onboarding = () => {
       case 2:
         return "Zəhmət olmasa seçim edin!";
       case 3:
-        return "Zəhmət olmasa ən azı 3 maraq sahəsi seçin!";
+        return "Zəhmət olmasa ən çox 3 maraq sahəsi seçin!";
       default:
         return "";
     }

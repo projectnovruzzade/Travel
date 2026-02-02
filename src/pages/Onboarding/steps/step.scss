@@ -67,10 +67,30 @@
   border: 3px solid transparent;
   padding: 1rem;
   cursor: pointer;
+}
 
-  &.active {
-    border: 3px solid $yellow-color;
-  }
+.interest-wrapper .option.Nature .travel-opt-btn.active {
+  border: 3px solid #2BBC41;
+}
+
+.interest-wrapper .option.Gastronomy .travel-opt-btn.active {
+  border: 3px solid #D79A4D;
+}
+
+.interest-wrapper .option.Culture .travel-opt-btn.active {
+  border: 3px solid #B6241F;
+}
+
+.interest-wrapper .option.Adventure .travel-opt-btn.active {
+  border: 3px solid #120AFF;
+}
+
+.interest-wrapper .option.City .travel-opt-btn.active {
+  border: 3px solid #9B26FA;
+}
+
+.interest-wrapper .option.History .travel-opt-btn.active {
+  border: 3px solid #FF6E00;
 }
 
 

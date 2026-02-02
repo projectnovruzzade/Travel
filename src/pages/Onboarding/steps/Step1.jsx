@@ -21,13 +21,13 @@ const Step1 = () => {
           <div className={`img-box ${userTravelStyle === "active" ? "active" : ""}`}>
             <img src={ActiveTravel} alt="Active Travel" />
           </div>
-          <div className={`item-title ${userTravelStyle === "active" ? "active" : ""}`}>Active Travel</div>
+          <div className={`item-title ${userTravelStyle === "active" ? "active" : ""}`}>Active</div>
         </div>
         <div className="content-item passive" onClick={() => setUserTravelStyle('passive')}>
           <div className={`img-box ${userTravelStyle === "passive" ? "active" : ""}`}>
             <img src={PassiveTravel} alt="Passive Travel" />
           </div>
-          <div className={`item-title ${userTravelStyle === "passive" ? "active" : ""}`}>Passive Travel</div>
+          <div className={`item-title ${userTravelStyle === "passive" ? "active" : ""}`}>Passive</div>
         </div>
       </div>
     </div>

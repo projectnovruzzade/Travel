@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import TravelOption from "../../../components/TravelOption";
 import { useOnboarding } from "../../../context/OnboardingContext";
 
@@ -9,11 +10,16 @@ const Step3 = () => {
   const [selectedInterests, setSelectedInterests] = useState(onboardingData.travelInterest || []);
 
   const handleInterestClick = (interest) => {
-    setSelectedInterests((prev) =>
-      prev.includes(interest)
-        ? prev.filter((item) => item !== interest)
-        : [...prev, interest]
-    );
+    setSelectedInterests((prev) => {
+      if (prev.includes(interest)) {
+        return prev.filter((item) => item !== interest);
+      }
+      if (prev.length >= 3) {
+        toast.error("You can select up to 3 interests only!");
+        return prev;
+      }
+      return [...prev, interest];
+    });
   };
 
   useEffect(() => {
@@ -30,7 +36,7 @@ const Step3 = () => {
           {interests.map((interest) => (
             <div
               key={interest}
-              className="option"
+              className={`option ${interest}`}
               onClick={() => handleInterestClick(interest)}
             >
               <TravelOption

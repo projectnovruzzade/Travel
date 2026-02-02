@@ -19,8 +19,8 @@ const Step2 = () => {
 
   const handlerSoloClick = () => setCompanionData("Solo", 1, 0);
   const handlerCoupleClick = () => setCompanionData("Couple", 2, 0);
-  const handlerFriendsClick = () => setCompanionData("Friends", 1, 0);
-  const handlerFamilyClick = () => setCompanionData("Family", 2, 0);
+  const handlerFriendsClick = () => setCompanionData("Friends", 2, 0);
+  const handlerFamilyClick = () => setCompanionData("Family", 2, 1);
 
   const setAdultsCounter = (fn) => {
     setCompanionData(selectedOption, fn(adultsCounter), childrenCounter);
@@ -36,7 +36,7 @@ const Step2 = () => {
       setIsActiveCounterChildren(false);
     } else if (selectedOption === "Friends") {
       setIsActiveCounterAdults(true);
-      setIsActiveCounterChildren(false);
+      setIsActiveCounterChildren(true);
     } else if (selectedOption === "Family") {
       setIsActiveCounterChildren(true);
       setIsActiveCounterAdults(true);
