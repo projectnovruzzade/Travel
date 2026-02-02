@@ -5,6 +5,7 @@ import "./index.scss";
 
 import Home from './pages/Home/index.jsx'
 import Onboarding from './pages/Onboarding/index.jsx'
+import Policy from './pages/Policy/index.jsx'
 
 import AdminLayout from './layout/AdminLayout'
 
@@ -20,6 +21,8 @@ function App() {
           <Route index element={<Home />} />
           <Route path='onboarding' element={<Onboarding />} />
         </Route>
+        <Route path='/terms' element={<Policy />} />
+        <Route path='/privacy' element={<Policy />} />
       </Routes>
     </>
   )
