@@ -1,0 +1,35 @@
+@use "../../index.scss" as *;
+
+#error-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  background: $blue-dark;
+}
+
+.error-code {
+  font-size: 6rem;
+  font-weight: 700;
+}
+
+.error-message {
+  font-size: 1.2rem;
+  margin-top: 0.5rem;
+}
+
+.error-link {
+  margin-top: 1.5rem;
+  padding: 10px 2rem;
+  border-radius: 12px;
+  background: $yellow-color;
+  color: #fff;
+  font-size: 0.9rem;
+  transition: 0.2s all;
+
+  &:hover {
+    background: $yellow-color-text;
+  }
+}

@@ -75,7 +75,7 @@ const Welcome = () => {
             />
           </Link>
           <p className="terms">
-            By continuing, you agree to our <Link to="/terms">Terms of Service and Privacy Policy.</Link>
+            By continuing, you agree to our <Link to="/privacy">Terms of Service and Privacy Policy.</Link>
           </p>
         </div>
         <div className="footer-features">

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import TravelOption from "../../../components/TravelOption";
 import { useOnboarding } from "../../../context/OnboardingContext";
+import TrueIcon from "../../../assets/icons/true-icon.svg"
 
 const interests = ["Nature", "City", "Adventure", "History", "Gastronomy", "Culture"];
 
@@ -36,7 +37,7 @@ const Step3 = () => {
           {interests.map((interest) => (
             <div
               key={interest}
-              className={`option ${interest}`}
+              className={`option ${interest} ${selectedInterests.includes(interest) ? "active" : ""}`}
               onClick={() => handleInterestClick(interest)}
             >
               <TravelOption
@@ -44,6 +45,9 @@ const Step3 = () => {
                 icon_type={interest}
                 className={selectedInterests.includes(interest) ? "active" : ""}
               />
+            <span className="active_target">
+              <img src={TrueIcon} alt="" />
+            </span>
             </div>
           ))}
         </div>

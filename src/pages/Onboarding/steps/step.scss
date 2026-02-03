@@ -69,30 +69,68 @@
   cursor: pointer;
 }
 
+.interest-wrapper .option {
+  position: relative;
+}
+
+.interest-wrapper .active_target {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+  top: 7px;
+  right: 7px;
+  border-radius: 25px;
+}
+
+.interest-wrapper .option.active .active_target {
+  display: flex;
+}
+
 .interest-wrapper .option.Nature .travel-opt-btn.active {
-  border: 3px solid #2BBC41;
+  border: 3px solid #2bbc41;
+}
+.interest-wrapper .option.Nature.active .active_target {
+  background: #2bbc41;
 }
 
 .interest-wrapper .option.Gastronomy .travel-opt-btn.active {
-  border: 3px solid #D79A4D;
+  border: 3px solid #d79a4d;
+}
+.interest-wrapper .option.Gastronomy.active .active_target {
+  background: #d79a4d;
 }
 
 .interest-wrapper .option.Culture .travel-opt-btn.active {
-  border: 3px solid #B6241F;
+  border: 3px solid #b6241f;
+}
+.interest-wrapper .option.Culture.active .active_target {
+  background: #b6241f;
 }
 
 .interest-wrapper .option.Adventure .travel-opt-btn.active {
-  border: 3px solid #120AFF;
+  border: 3px solid #120aff;
+}
+.interest-wrapper .option.Adventure.active .active_target {
+  background: #120aff;
 }
 
 .interest-wrapper .option.City .travel-opt-btn.active {
-  border: 3px solid #9B26FA;
+  border: 3px solid #9b26fa;
+}
+.interest-wrapper .option.City.active .active_target {
+  background: #9b26fa;
 }
 
 .interest-wrapper .option.History .travel-opt-btn.active {
-  border: 3px solid #FF6E00;
+  border: 3px solid #ff6e00;
 }
-
+.interest-wrapper .option.History.active .active_target {
+  background: #ff6e00;
+}
 
 // ! travel budget
 .travel-budget-content {
@@ -141,7 +179,7 @@
 .input-content {
   margin-top: 20px;
   display: flex;
-      position: relative;
+  position: relative;
 
   input {
     padding: 0.8rem 3rem;
@@ -167,21 +205,18 @@
   }
 }
 
-.input-content .icon{
+.input-content .icon {
   position: absolute;
   display: block;
   width: 24px;
   top: 50%;
   transform: translateY(-50%);
-  height:24px;
+  height: 24px;
   background-image: url("../../../assets/icons/calendar.svg");
   background-repeat: no-repeat;
   background-size: contain;
   left: 15px;
 }
-
-
-
 
 @media (max-width: 768px) {
   .content-item .img-box img {

@@ -15,8 +15,18 @@ export const OnboardingProvider = ({ children }) => {
     setOnboardingData((prev) => ({ ...prev, [field]: value }));
   };
 
+  const resetData = () => {
+    setOnboardingData({
+      travelStyle: null,
+      travelCompanion: null,
+      travelInterest: [],
+      budgetOption: null,
+      tripDays: null,
+    });
+  };
+
   return (
-    <OnboardingContext.Provider value={{ onboardingData, updateData }}>
+    <OnboardingContext.Provider value={{ onboardingData, updateData, resetData }}>
       {children}
     </OnboardingContext.Provider>
   );

@@ -41,3 +41,15 @@ $blue-secondary: #dbeafe;
 $blue-text: #1447e6;
 
 $green-orginal: #00a63e;
+
+// ! LOADING DOT ANIMATION
+@keyframes dotGlow {
+  0%, 100% {
+    background: rgba(233, 235, 248, 0.60);
+    filter: none;
+  }
+  50% {
+    background: #D9D9D9;
+    filter: drop-shadow(0 0 0.438px #D79A4D) drop-shadow(0 0 0.876px #D79A4D) drop-shadow(0 0 3.064px #D79A4D) drop-shadow(0 0 6.129px #D79A4D) drop-shadow(0 0 10.506px #D79A4D) drop-shadow(0 0 18.386px #D79A4D);
+  }
+}
