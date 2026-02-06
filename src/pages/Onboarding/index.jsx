@@ -3,7 +3,7 @@ import "./style.scss";
 import MagicIcon from "../../assets/icons/magic-icon.svg";
 import toast from "react-hot-toast";
 
-import { Link, useSearchParams } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom";
 
 import bgImage3 from "../../assets/images/background-overlay_3.png";
 import Button from "../../components/Button";
@@ -18,27 +18,56 @@ import Step2 from "./steps/Step2";
 import Step3 from "./steps/Step3";
 import Step4 from "./steps/Step4";
 
-const steps = [
-  { label: "1", component: <Step1 /> },
-  { label: "2", component: <Step2 /> },
-  { label: "3", component: <Step3 /> },
-  { label: "4", component: <Step4 /> },
-];
-
 const Onboarding = () => {
   usePageTitle("Onboarding");
 
   const { onboardingData, updateData, resetData } = useOnboarding();
   const [loading, setLoading] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
+
+  const handleBackToHome = () => {
+    resetData();
+    navigate("/");
+  };
   const stepParam = parseInt(searchParams.get("step"));
   const currentStep = stepParam >= 1 && stepParam <= 4 ? stepParam : 1;
 
+  const goToNextStep = () => {
+    if (currentStep < 4) {
+      setSearchParams({ step: String(currentStep + 1) });
+    }
+  };
+
+  const steps = [
+    { label: "1", component: <Step1 onAdvance={goToNextStep} /> },
+    { label: "2", component: <Step2 /> },
+    { label: "3", component: <Step3 /> },
+    { label: "4", component: <Step4 /> },
+  ];
+
+  // Hər step üçün əvvəlki steplərin tamamlanıb-tamamlanmadığını yoxla
+  const getMaxAllowedStep = () => {
+    if (onboardingData.travelStyle === null) return 1;
+    if (onboardingData.travelCompanion === null) return 2;
+    if (!onboardingData.travelInterest || onboardingData.travelInterest.length === 0) return 3;
+    return 4;
+  };
+
   useEffect(() => {
+    // Yalnız onboarding səhifəsindəykən step validasiyası et
+    const isOnboardingPage = window.location.pathname.includes("onboarding");
+    if (!isOnboardingPage) return;
+
     if (!searchParams.get("step")) {
       setSearchParams({ step: "1" }, { replace: true });
+    } else {
+      const maxAllowed = getMaxAllowedStep();
+      if (currentStep > maxAllowed) {
+        setSearchParams({ step: String(maxAllowed) }, { replace: true });
+      }
     }
-  }, []);
+  }, [currentStep, onboardingData]);
 
   // Hər step üçün validasiya
   const isStepValid = () => {
@@ -103,11 +132,11 @@ const Onboarding = () => {
         />
 
         <div className="onboarding-content">
-          <div className="back" onClick={resetData}>
-            <Link to="/">
+          <div className="back" onClick={handleBackToHome}>
+            <span>
               <img src={Chevron} alt="Chevron Left" />
               Back to Home
-            </Link>
+            </span>
           </div>
           {loading ? (
             <LoadingScreen />

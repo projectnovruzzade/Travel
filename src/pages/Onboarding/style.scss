@@ -58,6 +58,19 @@
   transition: opacity 0.3s ease;
 }
 
+.back {
+  position: relative;
+  z-index: 4;
+  cursor: pointer;
+  span {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    color: #fff;
+    font-size: .8rem;
+  }
+}
+
 .step-progress {
   display: flex;
   flex-direction: column;
@@ -245,8 +258,8 @@
   // width: 60px;
   // height: 60px;
 
-    width: 85%;
-    height: 85%;
+    width: 55%;
+    height: 55%;
   
 }
 
@@ -272,6 +285,7 @@
 .loading-dots .dot:nth-child(3) {
   animation-delay: 0.4s;
 }
+// ! LOADING
 
 // Responsive
 @media (max-width: 991px) {

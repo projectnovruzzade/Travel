@@ -2,6 +2,7 @@ import React from "react";
 import "./components.scss";
 import { FaPhoneAlt, FaEnvelope } from "react-icons/fa";
 import Logo from "./Logo";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -16,13 +17,13 @@ const Footer = () => {
 
         {/* Orta Hissə: Linklər */}
         <div className="footer-center">
-          <a href="/privacy" className="footer-link">
+          <Link to="/privacy" className="footer-link">
             Privacy Policy
-          </a>
+          </Link>
           <span className="separator">|</span>
-          <a href="/terms" className="footer-link">
+          <Link to="/privacy" className="footer-link">
             Terms of Use
-          </a>
+          </Link>
         </div>
 
         {/* Sağ Hissə: Əlaqə */}
