@@ -1,0 +1,472 @@
+/* GetPlan.css - Re-written from scratch to match the image precisely */
+
+:root {
+    --brand-gold: #d79a4d;
+    --text-white: #ffffff;
+    --text-dim: rgba(255, 255, 255, 0.7);
+    --glass-main: rgba(255, 255, 255, 0.05);
+    --glass-darker: rgba(0, 0, 0, 0.2);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --transition-fast: 0.2s ease;
+}
+
+.get-plan-container {
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+    color: var(--text-white);
+    font-family: 'Inter', -apple-system, sans-serif;
+    overflow-x: hidden;
+}
+
+.background-image {
+    position: fixed;
+    inset: 0;
+    background: url('../../assets/images/background.png') center/cover no-repeat;
+    z-index: -2;
+}
+
+.page-overlay {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.6) 100%);
+    backdrop-filter: blur(2px);
+    z-index: -1;
+}
+
+/* BRAND NAVIGATION */
+.brand-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 48px;
+    position: relative;
+    z-index: 10;
+}
+
+.brand-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.brand-logo img {
+    height: 38px;
+    width: auto;
+}
+
+.brand-logo span {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+.contact-us-btn {
+    background: var(--brand-gold);
+    color: white;
+    border: none;
+    padding: 10px 22px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(215, 154, 77, 0.25);
+    transition: transform var(--transition-fast);
+}
+
+.contact-us-btn:hover {
+    transform: translateY(-2px);
+}
+
+/* CONTENT CONTAINER */
+.plan-wrapper {
+    max-width: 70%;
+    margin: auto;
+    padding: 5vh 20px 80px;
+    position: relative;
+    z-index: 1;
+}
+
+.back-btn-container {
+    margin: auto 5%;
+    padding: 10% 0px 0px;
+}
+
+.breadcrumb-back {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: none;
+    border: none;
+    color: var(--text-white);
+    font-size: 14px;
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+.title-group {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.title-group h1 {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.title-group p {
+    font-size: 15px;
+    color: var(--text-dim);
+}
+
+/* ITINERARY CARD */
+.itinerary-section {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 40px;
+    padding: 40px;
+    margin-bottom: 24px;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+}
+
+.day-header-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 40px;
+}
+
+.day-badge {
+    background: var(--brand-gold);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 16px;
+    color: white;
+}
+
+.day-title {
+    font-size: 24px;
+    font-weight: 700;
+    flex: 1;
+}
+
+.explore-btn {
+    color: var(--brand-gold);
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    opacity: 0.8;
+    border-bottom: 1.5px solid var(--brand-gold);
+    padding-bottom: 2px;
+}
+
+/* TIMELINE ENTRIES */
+.timeline-container {
+    position: relative;
+    padding-left: 10px;
+}
+
+.timeline-line {
+    position: absolute;
+    left: 26px;
+    top: -10px;
+    bottom: 20px;
+    width: 1px;
+    background: rgba(255, 255, 255, 0.2);
+    z-index: 0;
+}
+
+.timeline-item {
+    position: relative;
+    display: flex;
+    gap: 25px;
+    margin-bottom: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 18px;
+    padding: 20px 25px;
+    z-index: 1;
+    align-items: center;
+}
+
+.icon-dot {
+    width: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--brand-gold);
+}
+
+.rotated-icon {
+    font-size: 16px;
+}
+
+.airplane {
+    transform: rotate(-40deg);
+}
+
+.item-content h3 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.item-content p {
+    font-size: 12px;
+    color: var(--text-dim);
+    line-height: 1.4;
+}
+
+.time-text {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* ACTIONS */
+.action-row {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 40px;
+}
+
+.see-all-plan-btn {
+    background: var(--brand-gold);
+    color: white;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 20px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* HOTEL CARD */
+.hotel-referral-card {
+    background: var(--glass-main);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 24px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.card-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.home-icon-box {
+    color: var(--brand-gold);
+}
+
+.card-text h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.card-text p {
+    font-size: 12px;
+    color: var(--text-dim);
+}
+
+.explore-hotels-cta {
+    background: var(--brand-gold);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* OPTIONAL SERVICES */
+.section-label {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 24px;
+}
+
+.services-glass-box {
+    background: var(--glass-main);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    padding: 10px 32px;
+}
+
+.service-entry {
+    display: flex;
+    gap: 20px;
+    padding: 24px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.service-entry:last-child {
+    border-bottom: none;
+}
+
+.service-icon-col {
+    color: var(--brand-gold);
+    padding-top: 4px;
+}
+
+.service-icon {
+    font-size: 20px;
+}
+
+.service-info-col {
+    flex: 1;
+}
+
+.service-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.service-top h3 {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.service-price {
+    font-weight: 700;
+    color: var(--brand-gold);
+}
+
+.service-info-col p {
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.5;
+    margin-bottom: 12px;
+}
+
+.guides-link {
+    color: var(--brand-gold);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 600;
+    display: table;
+    margin-left: auto;
+    margin-top: 10px;
+    border-bottom: 1.5px solid var(--brand-gold);
+    padding-bottom: 2px;
+}
+
+/* RESPONSIVE / PHONE MODE: 320px to 1400px */
+@media (max-width: 1400px) {
+    .plan-wrapper {
+        max-width: 95%;
+        padding: 2vh 10px 80px;
+    }
+
+    .back-btn-container {
+        margin: auto 4%;
+        padding: 20vh 0px 10px;
+        /* Pushed down 20% from top as requested */
+    }
+
+    .itinerary-section {
+        padding: 24px 15px;
+        border-radius: 30px;
+    }
+
+    .day-header-row {
+        gap: 12px;
+        margin-bottom: 25px;
+    }
+
+    .day-title {
+        font-size: 18px;
+    }
+
+    .explore-btn {
+        font-size: 13px;
+    }
+
+    .timeline-item {
+        padding: 15px 16px;
+        gap: 12px;
+        border-radius: 12px;
+    }
+
+    .action-row {
+        margin-bottom: 30px;
+    }
+
+    .see-all-plan-btn {
+        padding: 8px 16px;
+        font-size: 12px;
+    }
+
+    .hotel-referral-card {
+        padding: 20px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .card-left {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        width: 100%;
+        gap: 15px;
+    }
+
+    .card-text {
+        text-align: left;
+    }
+
+    .explore-hotels-cta {
+        align-self: flex-end;
+        padding: 8px 16px;
+        font-size: 11px;
+    }
+
+    .services-glass-box {
+        padding: 10px 15px;
+    }
+
+    .service-entry {
+        padding: 18px 0;
+        gap: 12px;
+    }
+
+    .service-info-col {
+        text-align: left;
+    }
+
+    .service-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .service-info-col p {
+        font-size: 11px;
+    }
+
+    .service-price {
+        text-align: right;
+        display: block;
+    }
+
+    .guides-link {
+        margin-top: 15px;
+    }
+}
