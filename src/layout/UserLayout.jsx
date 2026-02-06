@@ -7,8 +7,8 @@ const UserLayout = () => {
   return (
     <main>
       <Header />
-        <Outlet />
       <Footer />
+        <Outlet />
     </main>
   )
 }
