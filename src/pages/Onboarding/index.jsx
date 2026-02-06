@@ -10,6 +10,8 @@ import Button from "../../components/Button";
 import LoadingScreen from "../../components/LoadingScreen";
 import Chevron from "../../assets/icons/chevron.png";
 
+import PopUpEmail from "../../components/PopUpEmail";
+
 import { useOnboarding } from "../../context/OnboardingContext";
 import usePageTitle from "../../hooks/usePageTitle";
 
@@ -130,6 +132,8 @@ const Onboarding = () => {
           className="onboarding-bg"
           style={{ backgroundImage: `url(${bgImage3})` }}
         />
+
+        <PopUpEmail />
 
         <div className="onboarding-content">
           <div className="back" onClick={handleBackToHome}>

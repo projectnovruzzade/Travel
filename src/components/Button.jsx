@@ -15,6 +15,8 @@ const Button = ({ content, bg_color, text_color, icon_content}) => {
     blueText: "#1447E6",
 
     greenOriginal: "#00A63E",
+
+    redOrginal: "rgba(244, 67, 54, 1)"
   };
 
   return (
