@@ -1,14 +1,15 @@
-import { Routes, Route, Router } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import UserLayout from './layout/UserLayout.jsx'
 
 import "./index.scss";
 
 import Home from './pages/Home/index.jsx'
 import Onboarding from './pages/Onboarding/index.jsx'
+import GetPlan from './pages/GetPlan/GetPlan.jsx'
 import Policy from './pages/Policy/index.jsx'
 import Error from './pages/Error/index.jsx'
 
-import AdminLayout from './layout/AdminLayout'
+import AdminLayout from './layout/AdminLayout.jsx'
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
         <Route path='/' element={<UserLayout />} >
           <Route index element={<Home />} />
           <Route path='onboarding' element={<Onboarding />} />
+          <Route path='get-plan' element={<GetPlan />} />
         </Route>
         <Route path='/privacy' element={<Policy />} />
         <Route path='*' element={<Error />} />

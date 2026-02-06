@@ -3,7 +3,7 @@ import "./style.scss";
 import MagicIcon from "../../assets/icons/magic-icon.svg";
 import toast from "react-hot-toast";
 
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useSearchParams, useNavigate } from "react-router-dom";
 
 import bgImage3 from "../../assets/images/background-overlay_3.png";
 import Button from "../../components/Button";
@@ -31,6 +31,7 @@ const Onboarding = () => {
   const { onboardingData, updateData, resetData } = useOnboarding();
   const [loading, setLoading] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
   const stepParam = parseInt(searchParams.get("step"));
   const currentStep = stepParam >= 1 && stepParam <= 4 ? stepParam : 1;
 
@@ -91,7 +92,10 @@ const Onboarding = () => {
     if (!isStepValid()) return;
     setLoading(true);
     // TODO: burada response2 API sorğusu göndəriləcək
-    // cavab gələndə setLoading(false) ediləcək
+    setTimeout(() => {
+      setLoading(false);
+      navigate("/get-plan");
+    }, 2000);
   };
 
   return (
