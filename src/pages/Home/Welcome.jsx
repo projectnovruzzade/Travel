@@ -12,7 +12,6 @@ import bgImage3 from "../../assets/images/background-overlay_3.png";
 import bgImage4 from "../../assets/images/background-overlay_4.png";
 import bgImage5 from "../../assets/images/background-overlay_5.png";
 
-import PopUpEmail from "../../components/PopUpEmail";
 
 // ! api olaraq api.get() api.put() olaraq istifade edesen
 // ! fs
@@ -24,31 +23,27 @@ import "swiper/swiper-bundle.css";
 
 const backgroundImages = [bgImage1, bgImage2, bgImage3, bgImage4, bgImage5];
 
-const handlerPlanJourney = () => {
-  // ! bura start journey klik edende bu function handle olacaq
-  api.get("todos/1").then((response) => {
-    console.log("API Response:", response);
-  });
-};
-
 const Welcome = () => {
-  const [duration, setDuration] = useState(false);
 
-  
-  useEffect(() => {
-    console.log("deyisdi")
-  },[duration])
 
-  
+  const handlerPlanJourney = async (e) => {
+    e.preventDefault();
+    // ! bura start journey klik edende bu function handle olacaq
 
-  const handleTest = () => {
-    setDuration(true)
-    console.log("test")
-  }
+    try {
+      const response = await api.post("/V1/journeys", {});
+      let journeyId = response.id;
+      console.log("Response:", journeyId);
+
+      // Navigate to onboarding with journey ID
+      navigate("/onboarding", { state: { journeyId } });
+    } catch (error) {
+      console.error("Error creating journey:", error);
+    }
+  };
 
   return (
     <section id="home">
-      <PopUpEmail duration={duration} onClose={() => setDuration(false)} />
       <Swiper
         modules={[Autoplay, EffectFade]}
         effect="slide"
@@ -82,8 +77,7 @@ const Welcome = () => {
               contemporary luxury with us.
             </p>
           </div>
-          <Link
-            to="/onboarding"
+          <span
             className="main-btn-link"
             onClick={handlerPlanJourney}
           >
@@ -93,7 +87,7 @@ const Welcome = () => {
               bg_color={"yellowMain"}
               text_color={"#fff"}
             />
-          </Link>
+          </span>
           <p className="terms">
             By continuing, you agree to our{" "}
             <Link to="/privacy">Terms of Service and Privacy Policy.</Link>
@@ -108,7 +102,7 @@ const Welcome = () => {
               Design your journey with the power of AI
             </span>
           </div>
-          <div className="feature-item" onClick={handleTest}>
+          <div className="feature-item">
             <span className="icon">
               <img src={grow_icon} alt="" />
             </span>

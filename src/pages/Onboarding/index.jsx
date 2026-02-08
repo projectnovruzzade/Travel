@@ -3,7 +3,7 @@ import "./style.scss";
 import MagicIcon from "../../assets/icons/magic-icon.svg";
 import toast from "react-hot-toast";
 
-import { useSearchParams, useNavigate } from "react-router-dom";
+import { Link, useSearchParams, useNavigate } from "react-router-dom";
 
 import bgImage3 from "../../assets/images/background-overlay_3.png";
 import Button from "../../components/Button";
@@ -11,6 +11,8 @@ import LoadingScreen from "../../components/LoadingScreen";
 import Chevron from "../../assets/icons/chevron.png";
 
 import PopUpEmail from "../../components/PopUpEmail";
+
+import api from "../../services/api";
 
 import { useOnboarding } from "../../context/OnboardingContext";
 import usePageTitle from "../../hooks/usePageTitle";
@@ -32,6 +34,7 @@ const Onboarding = () => {
     resetData();
     navigate("/");
   };
+
   const stepParam = parseInt(searchParams.get("step"));
   const currentStep = stepParam >= 1 && stepParam <= 4 ? stepParam : 1;
 
@@ -52,7 +55,11 @@ const Onboarding = () => {
   const getMaxAllowedStep = () => {
     if (onboardingData.travelStyle === null) return 1;
     if (onboardingData.travelCompanion === null) return 2;
-    if (!onboardingData.travelInterest || onboardingData.travelInterest.length === 0) return 3;
+    if (
+      !onboardingData.travelInterest ||
+      onboardingData.travelInterest.length === 0
+    )
+      return 3;
     return 4;
   };
 
@@ -109,20 +116,82 @@ const Onboarding = () => {
     }
   };
 
-  const handleNext = () => {
+  const handleNext = async () => {
     if (!isStepValid()) {
       toast.error(getErrorMessage());
     } else {
+      if (currentStep === 1) {  // ! step 1
+        try {
+          const response = await api.put("/V1/journeys/step1", {
+            journeyId: onboardingData.journeyId,
+            travelStyle: onboardingData.travelStyle,
+          });
+          console.log("Response:", response);
+        } catch (error) {
+          console.error("Error creating journey:", error);
+        }
+      } else if (currentStep == 2) {  // ! step 2
+        try {
+          const travelWith = onboardingData.travelCompanion.type.toUpperCase();
+          const adultsCount = onboardingData.travelCompanion.adults;
+          const childrenCount =
+            travelWith === "FAMILY"
+              ? onboardingData.travelCompanion.children
+              : 0;
+
+          const response = await api.put("/V1/journeys/step2", {
+            journeyId: onboardingData.journeyId,
+            travelWith: travelWith,
+            adultsCount: adultsCount,
+            childrenCount: childrenCount,
+          });
+          console.log("Response:", response);
+        } catch (error) {
+          console.error("Error creating journey:", error);
+        }
+      } else if (currentStep == 3) { // ! step 3
+        try {
+          const response = await api.put("/V1/journeys/step3", {
+            journeyId: onboardingData.journeyId,
+            interests: onboardingData.travelInterest,
+          });
+          console.log("Response:", response);
+        } catch (error) {
+          console.error("Error creating journey:", error);
+        }
+      }
+
       setSearchParams({ step: String(currentStep + 1) });
     }
   };
 
   // ! LOADING
-  const handleFinish = () => {
-    if (!isStepValid()) return;
-    setLoading(true);
-    // TODO: burada response2 API sorğusu göndəriləcək
-    // cavab gələndə setLoading(false) ediləcək
+  const handlerFinish = async () => {
+    try {
+      const response = await api.put("/V1/journeys/step4", { // ! step 4 (end)
+        journeyId: onboardingData.journeyId,
+        budgetType: onboardingData.budgetOption.toUpperCase(),
+        tripDays: onboardingData.tripDays,
+      });
+
+      const response2 = await api.post("/api/ai/get-plan", {
+        adultsCount: onboardingData.travelCompanion.adults,
+        budgetType: onboardingData.budgetOption.toUpperCase(),
+        childrenCount:
+          onboardingData.travelCompanion.type.toUpperCase() === "FAMILY"
+            ? onboardingData.travelCompanion.children
+            : 0,
+        currentStep: currentStep,
+        interests: onboardingData.travelInterest,
+        travelStyle: onboardingData.travelStyle.toUpperCase(),
+        travelWith: onboardingData.travelCompanion.type.toUpperCase(),
+        tripDays: onboardingData.tripDays,
+      });
+      console.log("Journey Response:", response);
+      console.log("AI Plan Response:", response2);
+    } catch (error) {
+      console.error("Error creating journey:", error);
+    }
   };
 
   return (
@@ -216,7 +285,7 @@ const Onboarding = () => {
                         opacity: isStepValid() ? 1 : 0.6,
                       }}
                       disabled={!isStepValid()}
-                      onClick={handleFinish}
+                      onClick={handlerFinish}
                     >
                       <img src={MagicIcon} alt="" />
                       Get Your Plan
