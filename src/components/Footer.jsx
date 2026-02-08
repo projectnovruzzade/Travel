@@ -20,7 +20,7 @@ const Footer = () => {
               Privacy Policy
             </Link>
             <span className="separator">|</span>
-            <Link to="/terms" className="footer-link">
+            <Link to="/privacy" className="footer-link">
               Terms of Use
             </Link>
           </div>

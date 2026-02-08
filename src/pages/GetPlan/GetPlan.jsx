@@ -5,9 +5,13 @@ import { LuUsers, LuMapPin } from 'react-icons/lu';
 import { FiHome, FiClock } from 'react-icons/fi';
 import { IoAirplaneOutline } from 'react-icons/io5';
 
+import PopUpEmail from '../../components/PopUpEmail';
+import { useState } from 'react';
+
 
 const GetPlan = () => {
     const navigate = useNavigate();
+    const [duration, setDuration] = useState(false);
 
     const handleBack = () => {
         navigate(-1);
@@ -17,7 +21,7 @@ const GetPlan = () => {
         <div className="get-plan-container">
             <div className="background-image"></div>
             <div className="page-overlay"></div>
-
+           <PopUpEmail duration={duration} onClose={() => setDuration(false)} />
 
 
             <div className="back-btn-container">
@@ -97,7 +101,7 @@ const GetPlan = () => {
                 </section>
 
                 <div className="action-row">
-                    <button className="see-all-plan-btn">See All Plan</button>
+                    <button className="see-all-plan-btn" onClick={() => setDuration(true)}>See All Plan</button>
                 </div>
 
                 {/* HOTEL RECOMMENDATION */}

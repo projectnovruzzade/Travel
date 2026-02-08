@@ -91,7 +91,7 @@ const PopUpEmail = ({duration = false, onClose}) => {
                                 Please wait while we send your travel plan.
                             </div>
                             <div className="button loading">
-                                <span className="btn_badge" style={{ backgroundColor: "#7C7C7C", color: "#fff" }}>Sending...</span>
+                                <span className="btn_badge" style={{ backgroundColor: "#222", color: "#fff" }}>Sending...</span>
                             </div>
                         </>
                     )}

@@ -1,4 +1,4 @@
-const BASE_URL = "https://jsonplaceholder.typicode.com/";
+const BASE_URL = "http://localhost:8080";
 
 const request = async (endpoint, options = {}) => {
   const { method = "GET", body, headers = {} } = options;

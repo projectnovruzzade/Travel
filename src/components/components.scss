@@ -177,7 +177,7 @@ header nav {
   background: #26262676;
   z-index: 1000;
   top: -1000px;
-  transition: .4s all;
+  transition: 0.4s all;
 
   &.active {
     top: 0;
@@ -228,8 +228,10 @@ header nav {
   }
 
   .desc {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     margin-bottom: 10px;
+    color: #000;
+
     max-width: 300px;
   }
 
@@ -268,6 +270,7 @@ header nav {
       padding: 7px 0;
       border-radius: 16px;
       width: 100%;
+      font-size: 0.8rem;
     }
   }
 
@@ -279,7 +282,7 @@ header nav {
 
   .try-again-badge {
     margin-top: 10px;
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     color: rgba(244, 67, 54, 1);
     background: rgba(244, 67, 54, 0.1);
     padding: 4px 16px;
@@ -384,8 +387,11 @@ header nav {
       }
     }
   }
-}
 
+  .wrapper .text-part .button .btn_badge {
+    font-size: 0.8rem;
+  }
+}
 
 // ! media queries
 @media (max-width: 991px) {
@@ -408,7 +414,8 @@ header nav {
   }
 
   .wrapper .text-part .desc {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
+    color: #000;
   }
 
   .wrapper .text-part {
@@ -429,5 +436,21 @@ header nav {
 
   .logo-part .logo span {
     font-size: 0.9rem;
+  }
+
+  .wrapper .text-part {
+    padding: 1.2rem 0.7rem;
+  }
+
+  .wrapper .text-part .button .btn_badge {
+    font-size: 0.7rem;
+  }
+  .wrapper .text-part .try-again-badge {
+    font-size: 0.6rem;
+  }
+
+  .wrapper .exit {
+    width: 20px;
+    height: 20px;
   }
 }

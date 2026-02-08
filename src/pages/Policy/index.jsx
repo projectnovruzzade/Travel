@@ -1,6 +1,7 @@
 import Logo from "../../components/Logo";
 import usePageTitle from "../../hooks/usePageTitle";
 import "./style.scss";
+import "../../components/components.scss"
 
 const Policy = () => {
   usePageTitle("Terms & Privacy Policy");
