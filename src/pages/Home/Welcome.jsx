@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./style.scss";
 import Button from "../../components/Button";
 import { Link } from "react-router-dom";
@@ -12,6 +12,7 @@ import bgImage3 from "../../assets/images/background-overlay_3.png";
 import bgImage4 from "../../assets/images/background-overlay_4.png";
 import bgImage5 from "../../assets/images/background-overlay_5.png";
 
+import PopUpEmail from "../../components/PopUpEmail";
 
 // ! api olaraq api.get() api.put() olaraq istifade edesen
 // ! fs
@@ -25,14 +26,29 @@ const backgroundImages = [bgImage1, bgImage2, bgImage3, bgImage4, bgImage5];
 
 const handlerPlanJourney = () => {
   // ! bura start journey klik edende bu function handle olacaq
-   api.get("todos/1").then((response) => {
-     console.log("API Response:", response);
-   });
-}
+  api.get("todos/1").then((response) => {
+    console.log("API Response:", response);
+  });
+};
 
 const Welcome = () => {
+  const [duration, setDuration] = useState(false);
+
+  
+  useEffect(() => {
+    console.log("deyisdi")
+  },[duration])
+
+  
+
+  const handleTest = () => {
+    setDuration(true)
+    console.log("test")
+  }
+
   return (
     <section id="home">
+      <PopUpEmail duration={duration} onClose={() => setDuration(false)} />
       <Swiper
         modules={[Autoplay, EffectFade]}
         effect="slide"
@@ -66,7 +82,11 @@ const Welcome = () => {
               contemporary luxury with us.
             </p>
           </div>
-          <Link to="/onboarding" className="main-btn-link" onClick={handlerPlanJourney}>
+          <Link
+            to="/onboarding"
+            className="main-btn-link"
+            onClick={handlerPlanJourney}
+          >
             <Button
               content={`Plan Your Journey  `}
               icon_content={magic_icon}
@@ -75,7 +95,8 @@ const Welcome = () => {
             />
           </Link>
           <p className="terms">
-            By continuing, you agree to our <Link to="/privacy">Terms of Service and Privacy Policy.</Link>
+            By continuing, you agree to our{" "}
+            <Link to="/privacy">Terms of Service and Privacy Policy.</Link>
           </p>
         </div>
         <div className="footer-features">
@@ -87,7 +108,7 @@ const Welcome = () => {
               Design your journey with the power of AI
             </span>
           </div>
-          <div className="feature-item">
+          <div className="feature-item" onClick={handleTest}>
             <span className="icon">
               <img src={grow_icon} alt="" />
             </span>
