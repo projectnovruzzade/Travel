@@ -343,6 +343,17 @@
     font-weight: 600;
 }
 
+.support-label {
+    font-size: 13px;
+    color: var(--text-dim);
+    margin: 2px 0 0 0;
+}
+
+.service-title-col {
+    display: flex;
+    flex-direction: column;
+}
+
 .service-price {
     font-weight: 700;
     color: var(--brand-gold);

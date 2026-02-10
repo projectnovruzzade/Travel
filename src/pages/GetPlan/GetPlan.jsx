@@ -142,7 +142,10 @@ const GetPlan = () => {
                             </div>
                             <div className="service-info-col">
                                 <div className="service-top">
-                                    <h3>Local Tour Guide Support</h3>
+                                    <div className="service-title-col">
+                                        <h3>Local Tour Guide</h3>
+                                        <p className="support-label">Support</p>
+                                    </div>
                                     <span className="service-price">$50-70/day</span>
                                 </div>
                                 <p>Choose from our expert local guides - specialists in history, culture, and adventure</p>
