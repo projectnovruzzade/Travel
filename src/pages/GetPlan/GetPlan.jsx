@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import './GetPlan.css';
 import { FaArrowLeft } from 'react-icons/fa';
 import { LuUsers, LuMapPin } from 'react-icons/lu';
@@ -11,6 +11,11 @@ const GetPlan = () => {
 
     const handleBack = () => {
         navigate(-1);
+        console.log("Navigating back");
+    };
+    const handleExpert = () => {
+        window.scrollTo(0, 0);
+        navigate('/expert');
     };
 
     return (
@@ -39,7 +44,7 @@ const GetPlan = () => {
                     <div className="day-header-row">
                         <div className="day-badge">1</div>
                         <h2 className="day-title">Day 1: Old City & Historical Landmarks</h2>
-                        <a href="#" className="explore-btn">Explore</a>
+                        <span className="explore-btn">Explore</span>
                     </div>
 
                     <div className="timeline-container">
@@ -141,7 +146,7 @@ const GetPlan = () => {
                                     <span className="service-price">$50-70/day</span>
                                 </div>
                                 <p>Choose from our expert local guides - specialists in history, culture, and adventure</p>
-                                <a href="#" className="guides-link">See All Guides →</a>
+                                <span onClick={handleExpert} className="guides-link">See All Guides →</span>
                             </div>
                         </div>
                     </div>

@@ -95,6 +95,7 @@
 
 .breadcrumb-back {
     display: flex;
+
     align-items: center;
     gap: 8px;
     background: none;
@@ -364,6 +365,7 @@
     margin-top: 10px;
     border-bottom: 1.5px solid var(--brand-gold);
     padding-bottom: 2px;
+    cursor: pointer;
 }
 
 /* RESPONSIVE / PHONE MODE: 320px to 1400px */
@@ -468,5 +470,12 @@
 
     .guides-link {
         margin-top: 15px;
+    }
+
+
+    .breadcrumb-back {
+
+        margin: 30% 10px;
+
     }
 }
