@@ -11,7 +11,7 @@ const GetPlan = () => {
 
     const handleBack = () => {
         navigate(-1);
-        console.log("Navigating back");
+
     };
     const handleExpert = () => {
         window.scrollTo(0, 0);
@@ -119,36 +119,32 @@ const GetPlan = () => {
                     <button className="explore-hotels-cta">Explore Hotels</button>
                 </section>
 
-                {/* OPTIONAL SERVICES */}
                 <section className="optional-services-container">
                     <h2 className="section-label">Optional Services</h2>
-                    <div className="services-glass-box">
-                        <div className="service-entry">
+                    <div className="services-list">
+                        <div className="service-card">
                             <div className="service-icon-col">
-                                <IoAirplaneOutline className="service-icon rotated-icon airplane" />
+                                <IoAirplaneOutline className="service-icon airplane" />
                             </div>
                             <div className="service-info-col">
-                                <div className="service-top">
-                                    <h3>Airport Pickup Service</h3>
-                                    <span className="service-price">$45</span>
-                                </div>
+                                <h3>Airport Pickup Service</h3>
                                 <p>We'll pick you up from the airport and take you straight to your hotel</p>
+                            </div>
+                            <div className="service-right-col">
+                                <span className="service-price">$45</span>
                             </div>
                         </div>
 
-                        <div className="service-entry">
+                        <div className="service-card">
                             <div className="service-icon-col">
-                                <LuUsers className="service-icon rotated-icon" />
+                                <LuUsers className="service-icon" />
                             </div>
                             <div className="service-info-col">
-                                <div className="service-top">
-                                    <div className="service-title-col">
-                                        <h3>Local Tour Guide</h3>
-                                        <p className="support-label">Support</p>
-                                    </div>
-                                    <span className="service-price">$50-70/day</span>
-                                </div>
+                                <h3>Local Tour Guide <br /> Support</h3>
                                 <p>Choose from our expert local guides - specialists in history, culture, and adventure</p>
+                            </div>
+                            <div className="service-right-col">
+                                <span className="service-price">$50-70/day</span>
                                 <span onClick={handleExpert} className="guides-link">See All Guides →</span>
                             </div>
                         </div>

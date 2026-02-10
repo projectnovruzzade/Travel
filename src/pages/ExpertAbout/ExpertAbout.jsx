@@ -11,7 +11,7 @@ import nigarImg from '../../assets/images/nigar-expert.jpg';
 const ExpertAbout = () => {
     const navigate = useNavigate();
 
-    const handleBack = () => {
+   const handleBack = () => {
         navigate(-1);
     };
 
