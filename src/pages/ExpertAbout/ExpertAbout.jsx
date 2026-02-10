@@ -4,11 +4,11 @@ import { FaArrowLeft, FaStar, FaWhatsapp, FaCheckCircle } from 'react-icons/fa';
 import { FiMail, FiClock, FiHome } from 'react-icons/fi';
 import { LuMapPin, LuUsers } from 'react-icons/lu';
 import { IoAirplaneOutline } from 'react-icons/io5';
-import './TeamAbout.css';
+import './ExpertAbout.css';
 
 import nigarImg from '../../assets/images/nigar-expert.jpg';
 
-const TeamAbout = () => {
+const ExpertAbout = () => {
     const navigate = useNavigate();
 
     const handleBack = () => {
@@ -195,4 +195,4 @@ const TeamAbout = () => {
     );
 };
 
-export default TeamAbout;
+export default ExpertAbout;

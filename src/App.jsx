@@ -7,7 +7,7 @@ import Home from './pages/Home/index.jsx'
 import Onboarding from './pages/Onboarding/index.jsx'
 import GetPlan from './pages/GetPlan/GetPlan.jsx'
 import Expert from './pages/ExpertTeam/Expert.jsx'
-import TeamAbout from './pages/TeamAbout/TeamAbout.jsx'
+import ExpertAbout from './pages/ExpertAbout/ExpertAbout.jsx'
 import Policy from './pages/Policy/index.jsx'
 import Error from './pages/Error/index.jsx'
 
@@ -26,7 +26,7 @@ function App() {
           <Route path='onboarding' element={<Onboarding />} />
           <Route path='get-plan' element={<GetPlan />} />
           <Route path='expert' element={<Expert />} />
-          <Route path='team-about' element={<TeamAbout />} />
+          <Route path='expert-about' element={<ExpertAbout />} />
         </Route>
         <Route path='/privacy' element={<Policy />} />
         <Route path='*' element={<Error />} />
