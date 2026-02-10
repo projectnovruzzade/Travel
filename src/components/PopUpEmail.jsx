@@ -20,6 +20,7 @@ const PopUpEmail = ({duration = false, onClose}) => {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   };
 
+//   ! this is main part of popup   ( burda goresen işini submit olarsa)
   const handleSubmit = () => {
     setStatus("loading");
     setTimeout(() => {
