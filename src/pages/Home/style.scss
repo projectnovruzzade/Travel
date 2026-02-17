@@ -1,5 +1,5 @@
 // ! HOME STYLE
-@import "../../index.scss";
+@use "../../index.scss" as *;
 
 @mixin glassEfect {
   -webkit-backdrop-filter: blur(3px);

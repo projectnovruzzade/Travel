@@ -1,5 +1,5 @@
 // ! COMPONENTS STYLE
-@import "../index.scss";
+@use "../index.scss" as *;
 
 header {
   position: absolute;

@@ -17,6 +17,7 @@
   font-weight: 600;
 }
 
+// *  travel style
 .travel-style-content {
   display: flex;
   margin-top: 50px;
@@ -132,7 +133,7 @@
   background: #ff6e00;
 }
 
-// ! travel budget
+// * travel budget
 .travel-budget-content {
   margin-top: 50px;
 }
@@ -217,6 +218,7 @@
   background-size: contain;
   left: 15px;
 }
+
 
 @media (max-width: 768px) {
   .content-item .img-box img {
