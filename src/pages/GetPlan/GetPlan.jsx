@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import './GetPlan.css';
 import { FaArrowLeft } from 'react-icons/fa';
 import { LuUsers, LuMapPin } from 'react-icons/lu';
@@ -15,6 +15,11 @@ const GetPlan = () => {
 
     const handleBack = () => {
         navigate(-1);
+
+    };
+    const handleExpert = () => {
+        window.scrollTo(0, 0);
+        navigate('/expert');
     };
 
     return (
@@ -43,7 +48,7 @@ const GetPlan = () => {
                     <div className="day-header-row">
                         <div className="day-badge">1</div>
                         <h2 className="day-title">Day 1: Old City & Historical Landmarks</h2>
-                        <a href="#" className="explore-btn">Explore</a>
+                        <span className="explore-btn">Explore</span>
                     </div>
 
                     <div className="timeline-container">
@@ -118,34 +123,33 @@ const GetPlan = () => {
                     <button className="explore-hotels-cta">Explore Hotels</button>
                 </section>
 
-                {/* OPTIONAL SERVICES */}
                 <section className="optional-services-container">
                     <h2 className="section-label">Optional Services</h2>
-                    <div className="services-glass-box">
-                        <div className="service-entry">
+                    <div className="services-list">
+                        <div className="service-card">
                             <div className="service-icon-col">
-                                <IoAirplaneOutline className="service-icon rotated-icon airplane" />
+                                <IoAirplaneOutline className="service-icon airplane" />
                             </div>
                             <div className="service-info-col">
-                                <div className="service-top">
-                                    <h3>Airport Pickup Service</h3>
-                                    <span className="service-price">$45</span>
-                                </div>
+                                <h3>Airport Pickup Service</h3>
                                 <p>We'll pick you up from the airport and take you straight to your hotel</p>
+                            </div>
+                            <div className="service-right-col">
+                                <span className="service-price">$45</span>
                             </div>
                         </div>
 
-                        <div className="service-entry">
+                        <div className="service-card">
                             <div className="service-icon-col">
-                                <LuUsers className="service-icon rotated-icon" />
+                                <LuUsers className="service-icon" />
                             </div>
                             <div className="service-info-col">
-                                <div className="service-top">
-                                    <h3>Local Tour Guide Support</h3>
-                                    <span className="service-price">$50-70/day</span>
-                                </div>
+                                <h3>Local Tour Guide <br /> Support</h3>
                                 <p>Choose from our expert local guides - specialists in history, culture, and adventure</p>
-                                <a href="#" className="guides-link">See All Guides →</a>
+                            </div>
+                            <div className="service-right-col">
+                                <span className="service-price">$50-70/day</span>
+                                <span onClick={handleExpert} className="guides-link">See All Guides →</span>
                             </div>
                         </div>
                     </div>

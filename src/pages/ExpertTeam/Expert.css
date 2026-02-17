@@ -1,0 +1,242 @@
+/* Expert.css - Styled to match the dark glassmorphism theme */
+
+:root {
+    --brand-gold: #d79a4d;
+    --text-white: #ffffff;
+    --text-dim: rgba(255, 255, 255, 0.7);
+    --glass-main: rgba(255, 255, 255, 0.08);
+    --glass-border: rgba(255, 255, 255, 0.15);
+    --glass-darker: rgba(0, 0, 0, 0.3);
+    --transition-fast: 0.2s ease;
+}
+
+.expert-container {
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+    color: var(--text-white);
+    font-family: 'Inter', -apple-system, sans-serif;
+    overflow-x: hidden;
+    padding-bottom: 80px;
+}
+
+.background-image {
+    position: fixed;
+    inset: 0;
+    background: url('../../assets/images/background.png') center/cover no-repeat;
+    z-index: -2;
+}
+
+.page-overlay {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.7) 100%);
+    backdrop-filter: blur(8px);
+    z-index: -1;
+}
+
+/* Back Button */
+.back-btn-container {
+    display: flex;
+    align-items: center;
+    background: none;
+    border: none;
+    color: var(--text-white);
+    font-size: 14px;
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+
+.breadcrumb-back:hover {
+    opacity: 1;
+}
+
+/* Header Section */
+.header-section {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    margin-bottom: 50px;
+    padding: 20px 20px 0;
+}
+
+.header-section h1 {
+    font-size: 40px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    letter-spacing: -0.5px;
+}
+
+.header-section p {
+    font-size: 16px;
+    color: var(--text-dim);
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* Expert Grid */
+.experts-grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 5%;
+}
+
+/* Expert Card */
+.expert-card {
+    background: var(--glass-main);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.expert-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.expert-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.expert-profile {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+.profile-image-container {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    flex-shrink: 0;
+}
+
+.expert-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.expert-info h2 {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0 0 4px 0;
+}
+
+.experience {
+    font-size: 13px;
+    color: var(--text-dim);
+    display: block;
+    margin-bottom: 4px;
+}
+
+.rating-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.star-icon {
+    color: var(--brand-gold);
+}
+
+.price-tag {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--brand-gold);
+}
+
+.expert-bio {
+    font-size: 14px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 10px;
+}
+
+/* Tags */
+.tags-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.tags-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.tag-pill {
+    background: rgba(255, 255, 255, 0.08);
+    padding: 5px 12px;
+    border-radius: 100px;
+    font-size: 12px;
+    color: var(--text-dim);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.language-tags .tag-pill {
+    background: rgba(215, 154, 77, 0.15);
+    color: var(--brand-gold);
+    border-color: rgba(215, 154, 77, 0.3);
+}
+
+.select-btn {
+    width: 100%;
+    background: var(--brand-gold);
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 20px;
+}
+
+.select-btn:hover {
+    background: #e5a759;
+    transform: scale(1.02);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .experts-grid {
+        grid-template-columns: 1fr;
+        max-width: 600px;
+    }
+}
+
+@media (max-width: 768px) {
+    .header-section h1 {
+        font-size: 32px;
+    }
+
+
+    .breadcrumb-back {
+
+        margin: 10% 10px;
+
+    }
+}
