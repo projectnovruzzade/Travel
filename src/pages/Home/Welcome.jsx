@@ -12,6 +12,8 @@ import bgImage3 from "../../assets/images/background-overlay_3.png";
 import bgImage4 from "../../assets/images/background-overlay_4.png";
 import bgImage5 from "../../assets/images/background-overlay_5.png";
 
+import { useNavigate } from "react-router-dom";
+
 
 // ! api olaraq api.get() api.put() olaraq istifade edesen
 // ! fs
@@ -25,6 +27,7 @@ const backgroundImages = [bgImage1, bgImage2, bgImage3, bgImage4, bgImage5];
 
 const Welcome = () => {
 
+  const navigate = useNavigate();
 
   const handlerPlanJourney = async (e) => {
     e.preventDefault();
