@@ -124,7 +124,7 @@ const Onboarding = () => {
         try {
           const response = await api.put("/V1/journeys/step1", {
             journeyId: onboardingData.journeyId,
-            travelStyle: onboardingData.travelStyle,
+            travelStyle: onboardingData.travelStyle.toUpperCase(),
           });
           console.log("Response:", response);
         } catch (error) {
