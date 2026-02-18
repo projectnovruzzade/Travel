@@ -3,7 +3,12 @@ import "./style.scss";
 import MagicIcon from "../../assets/icons/magic-icon.svg";
 import toast from "react-hot-toast";
 
-import { Link, useSearchParams, useNavigate } from "react-router-dom";
+import {
+  Link,
+  useSearchParams,
+  useNavigate,
+  useLocation,
+} from "react-router-dom";
 
 import bgImage3 from "../../assets/images/background-overlay_3.png";
 import Button from "../../components/Button";
@@ -29,6 +34,7 @@ const Onboarding = () => {
   const [loading, setLoading] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleBackToHome = () => {
     resetData();
@@ -78,6 +84,18 @@ const Onboarding = () => {
     }
   }, [currentStep, onboardingData]);
 
+  useEffect(() => {
+    if (!searchParams.get("step")) {
+      setSearchParams({ step: "1" }, { replace: true });
+    }
+
+    // Save journeyId to context when coming from Welcome page
+    if (location.state?.journeyId && !onboardingData.journeyId) {
+      updateData("journeyId", location.state.journeyId);
+      console.log("Journey ID saved:", location.state.journeyId);
+    }
+  }, [location.state]);
+
   // Hər step üçün validasiya
   const isStepValid = () => {
     switch (currentStep) {
@@ -120,7 +138,8 @@ const Onboarding = () => {
     if (!isStepValid()) {
       toast.error(getErrorMessage());
     } else {
-      if (currentStep === 1) {  // ! step 1
+      if (currentStep === 1) {
+        // ! step 1
         try {
           const response = await api.put("/V1/journeys/step1", {
             journeyId: onboardingData.journeyId,
@@ -130,7 +149,8 @@ const Onboarding = () => {
         } catch (error) {
           console.error("Error creating journey:", error);
         }
-      } else if (currentStep == 2) {  // ! step 2
+      } else if (currentStep == 2) {
+        // ! step 2
         try {
           const travelWith = onboardingData.travelCompanion.type.toUpperCase();
           const adultsCount = onboardingData.travelCompanion.adults;
@@ -149,7 +169,8 @@ const Onboarding = () => {
         } catch (error) {
           console.error("Error creating journey:", error);
         }
-      } else if (currentStep == 3) { // ! step 3
+      } else if (currentStep == 3) {
+        // ! step 3
         try {
           const response = await api.put("/V1/journeys/step3", {
             journeyId: onboardingData.journeyId,
@@ -168,7 +189,8 @@ const Onboarding = () => {
   // ! LOADING
   const handlerFinish = async () => {
     try {
-      const response = await api.put("/V1/journeys/step4", { // ! step 4 (end)
+      const response = await api.put("/V1/journeys/step4", {
+        // ! step 4 (end)
         journeyId: onboardingData.journeyId,
         budgetType: onboardingData.budgetOption.toUpperCase(),
         tripDays: onboardingData.tripDays,
