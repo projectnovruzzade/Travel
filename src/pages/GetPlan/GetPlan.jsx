@@ -1,4 +1,4 @@
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './GetPlan.css';
 import { FaArrowLeft } from 'react-icons/fa';
 import { LuUsers, LuMapPin } from 'react-icons/lu';
@@ -7,101 +7,137 @@ import { IoAirplaneOutline } from 'react-icons/io5';
 
 import PopUpEmail from '../../components/PopUpEmail';
 import { useState } from 'react';
+import { useOnboarding } from '../../context/OnboardingContext';
+import api from '../../services/api';
 
 
 const GetPlan = () => {
     const navigate = useNavigate();
     const [duration, setDuration] = useState(false);
+    const [exploreLoading, setExploreLoading] = useState(false);
+    const { onboardingData } = useOnboarding();
+
+    const planData = onboardingData.planData;
+    const days = Array.isArray(planData?.days) ? planData.days : [];
+    const totalDays = days.length;
+    const firstDay = days[0] || null;
+    const firstDayItinerary = Array.isArray(firstDay?.itinerary) ? firstDay.itinerary : [];
 
     const handleBack = () => {
         navigate(-1);
+    };
 
+    const handleExplore = async () => {
+        if (!planData || exploreLoading) return;
+
+        setExploreLoading(true);
+        try {
+            const enriched = await api.post("/api/plan/enrich", planData);
+
+            const firstDayEnriched = Array.isArray(enriched?.days) ? enriched.days[0] : null;
+            if (firstDayEnriched) {
+                const itinerary = Array.isArray(firstDayEnriched.itinerary) ? firstDayEnriched.itinerary : [];
+                for (const slot of itinerary) {
+                    const activities = Array.isArray(slot?.activities) ? slot.activities : [];
+                    for (const activity of activities) {
+                        if (activity.explore_url) {
+                            window.open(activity.explore_url, "_blank");
+                        }
+                    }
+                }
+            }
+        } catch (error) {
+            console.error("Error enriching plan:", error);
+        } finally {
+            setExploreLoading(false);
+        }
     };
-    const handleExpert = () => {
-        window.scrollTo(0, 0);
-        navigate('/expert');
-    };
+
+    if (!planData) {
+        return (
+            <div className="get-plan-container">
+                <div className="background-image"></div>
+                <div className="page-overlay"></div>
+                <div className="back-btn-container">
+                    <button className="breadcrumb-back" onClick={() => navigate('/')}>
+                        <FaArrowLeft size={12} /> Back
+                    </button>
+                </div>
+                <main className="plan-wrapper">
+                    <div className="title-group">
+                        <h1>No Plan Available</h1>
+                        <p>Please complete the onboarding to generate your itinerary.</p>
+                    </div>
+                </main>
+            </div>
+        );
+    }
 
     return (
         <div className="get-plan-container">
             <div className="background-image"></div>
             <div className="page-overlay"></div>
-           <PopUpEmail duration={duration} onClose={() => setDuration(false)} />
-
+            <PopUpEmail duration={duration} onClose={() => setDuration(false)} plan={planData} />
 
             <div className="back-btn-container">
                 <button className="breadcrumb-back" onClick={handleBack}>
                     <FaArrowLeft size={12} /> Back
                 </button>
             </div>
+
             {/* MAIN CONTENT */}
             <main className="plan-wrapper">
 
                 <div className="title-group">
-                    <h1>Your Azerbaijan Journey</h1>
-                    <p>5-Day Personalized Itinerary</p>
+                    <h1>Your {firstDay?.city || "Trip"} Journey</h1>
+                    <p>{totalDays}-Day Personalized Itinerary</p>
                 </div>
 
-
-                {/* ITINERARY SECTION */}
+                {/* ITINERARY SECTION - First Day Only */}
                 <section className="itinerary-section">
                     <div className="day-header-row">
-                        <div className="day-badge">1</div>
-                        <h2 className="day-title">Day 1: Old City & Historical Landmarks</h2>
-                        <span className="explore-btn">Explore</span>
+                        <div className="day-badge">{firstDay?.day ?? "-"}</div>
+                        <h2 className="day-title">Day {firstDay?.day ?? "-"}: {firstDay?.city || "Destination"}</h2>
+                        <a href="#" className="explore-btn" onClick={(e) => { e.preventDefault(); handleExplore(); }}>
+                            {exploreLoading ? "Loading..." : "Explore"}
+                        </a>
                     </div>
 
                     <div className="timeline-container">
+                        {firstDayItinerary.length === 0 && (
+                            <div className="timeline-item">
+                                <div className="item-content">
+                                    <p>No itinerary details are available yet.</p>
+                                </div>
+                            </div>
+                        )}
 
+                        {firstDayItinerary.map((slot, slotIndex) => (
+                            <div key={slotIndex}>
+                                {/* Time Slot */}
+                                <div className="timeline-item activity-time">
+                                    <div className="icon-dot">
+                                        <FiClock className="rotated-icon" />
+                                    </div>
+                                    <div className="item-content">
+                                        <span className="time-text">{slot.time_slot}</span>
+                                    </div>
+                                </div>
 
-                        <div className="timeline-item activity-time">
-                            <div className="icon-dot">
-                                <FiClock className="rotated-icon" />
+                                {/* Activities within this time slot */}
+                                {(Array.isArray(slot.activities) ? slot.activities : []).map((activity, actIndex) => (
+                                    <div className="timeline-item" key={actIndex}>
+                                        <div className="icon-dot">
+                                            <LuMapPin className="rotated-icon" />
+                                        </div>
+                                        <div className="item-content">
+                                            <h3>{activity.place_name}</h3>
+                                            <p>{activity.description}</p>
+                                        </div>
+                                    </div>
+                                ))}
                             </div>
-                            <div className="item-content">
-                                <span className="time-text">09:00-12:00 AM</span>
-                            </div>
-                        </div>
-
-                        <div className="timeline-item">
-                            <div className="icon-dot">
-                                <LuMapPin className="rotated-icon" />
-                            </div>
-                            <div className="item-content">
-                                <h3>Icherisheher (Old City)</h3>
-                                <p>Explore the UNESCO World Heritage site, visit Maiden Tower</p>
-                            </div>
-                        </div>
-
-                        <div className="timeline-item">
-                            <div className="icon-dot">
-                                <LuMapPin className="rotated-icon" />
-                            </div>
-                            <div className="item-content">
-                                <h3>Maiden Tower</h3>
-                                <p>Visit the iconic 12th-century defensive tower</p>
-                            </div>
-                        </div>
-
-                        <div className="timeline-item">
-                            <div className="icon-dot">
-                                <LuMapPin className="rotated-icon" />
-                            </div>
-                            <div className="item-content">
-                                <h3>Palace of Shirvanshahs</h3>
-                                <p>Discover 15th-century royal palace complex</p>
-                            </div>
-                        </div>
-
-                        <div className="timeline-item">
-                            <div className="icon-dot">
-                                <LuMapPin className="rotated-icon" />
-                            </div>
-                            <div className="item-content">
-                                <h3>Transportation</h3>
-                                <p>Taxi fares between Old City attractions</p>
-                            </div>
-                        </div>
+                        ))}
                     </div>
                 </section>
 
@@ -123,33 +159,34 @@ const GetPlan = () => {
                     <button className="explore-hotels-cta">Explore Hotels</button>
                 </section>
 
+                {/* OPTIONAL SERVICES */}
                 <section className="optional-services-container">
                     <h2 className="section-label">Optional Services</h2>
-                    <div className="services-list">
-                        <div className="service-card">
+                    <div className="services-glass-box">
+                        <div className="service-entry">
                             <div className="service-icon-col">
-                                <IoAirplaneOutline className="service-icon airplane" />
+                                <IoAirplaneOutline className="service-icon rotated-icon airplane" />
                             </div>
                             <div className="service-info-col">
-                                <h3>Airport Pickup Service</h3>
+                                <div className="service-top">
+                                    <h3>Airport Pickup Service</h3>
+                                    <span className="service-price">$45</span>
+                                </div>
                                 <p>We'll pick you up from the airport and take you straight to your hotel</p>
-                            </div>
-                            <div className="service-right-col">
-                                <span className="service-price">$45</span>
                             </div>
                         </div>
 
-                        <div className="service-card">
+                        <div className="service-entry">
                             <div className="service-icon-col">
-                                <LuUsers className="service-icon" />
+                                <LuUsers className="service-icon rotated-icon" />
                             </div>
                             <div className="service-info-col">
-                                <h3>Local Tour Guide <br /> Support</h3>
+                                <div className="service-top">
+                                    <h3>Local Tour Guide Support</h3>
+                                    <span className="service-price">$50-70/day</span>
+                                </div>
                                 <p>Choose from our expert local guides - specialists in history, culture, and adventure</p>
-                            </div>
-                            <div className="service-right-col">
-                                <span className="service-price">$50-70/day</span>
-                                <span onClick={handleExpert} className="guides-link">See All Guides →</span>
+                                <a href="#" className="guides-link">See All Guides →</a>
                             </div>
                         </div>
                     </div>

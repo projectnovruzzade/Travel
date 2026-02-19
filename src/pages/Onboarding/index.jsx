@@ -188,15 +188,21 @@ const Onboarding = () => {
 
   // ! LOADING
   const handlerFinish = async () => {
+    if (!isStepValid()) {
+      toast.error("Please fill in all required fields!");
+      return;
+    }
+
+    setLoading(true);
+
     try {
-      const response = await api.put("/V1/journeys/step4", {
-        // ! step 4 (end)
+      await api.put("/V1/journeys/step4", {
         journeyId: onboardingData.journeyId,
         budgetType: onboardingData.budgetOption.toUpperCase(),
         tripDays: onboardingData.tripDays,
       });
 
-      const response2 = await api.post("/api/ai/get-plan", {
+      const planResponse = await api.post("/api/ai/get-plan", {
         adultsCount: onboardingData.travelCompanion.adults,
         budgetType: onboardingData.budgetOption.toUpperCase(),
         childrenCount:
@@ -209,10 +215,14 @@ const Onboarding = () => {
         travelWith: onboardingData.travelCompanion.type.toUpperCase(),
         tripDays: onboardingData.tripDays,
       });
-      console.log("Journey Response:", response);
-      console.log("AI Plan Response:", response2);
+
+      updateData("planData", planResponse);
+      setLoading(false);
+      navigate("/get-plan");
     } catch (error) {
       console.error("Error creating journey:", error);
+      toast.error("Something went wrong. Please try again.");
+      setLoading(false);
     }
   };
 

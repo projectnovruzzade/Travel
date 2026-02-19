@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import PopUpImage from "../assets/images/popup-image.png"
 import Button from './Button';
 import Exit from "../assets/icons/exit.svg";
+import api from '../services/api';
 
-const PopUpEmail = ({duration = false, onClose}) => {
+const PopUpEmail = ({duration = false, onClose, plan}) => {
 
 
   const [popupIsActive,setPopupIsActive] = useState(duration);
@@ -11,7 +12,6 @@ const PopUpEmail = ({duration = false, onClose}) => {
 
   useEffect(() => {
     setPopupIsActive(duration);
-    console.log(duration)
   }, [duration]);
 
   const [status, setStatus] = useState("default"); // "default" | "loading" | "success" | "error"
@@ -20,16 +20,23 @@ const PopUpEmail = ({duration = false, onClose}) => {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   };
 
-//   ! this is main part of popup   ( burda goresen işini submit olarsa)
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
+    if (!validateEmail(email)) {
+      setStatus("error");
+      return;
+    }
+
     setStatus("loading");
-    setTimeout(() => {
-      if (validateEmail(email)) {
-        setStatus("success");
-      } else {
-        setStatus("error");
-      }
-    }, 1500);
+    console.log(email)
+    console.log(plan);
+    
+    try {
+      await api.post("/api/mail/send-plan", { email, plan });
+      setStatus("success");
+    } catch (error) {
+      console.error("Failed to send plan email:", error);
+      setStatus("error");
+    }
   };
 
   const handleTryAgain = () => {
@@ -44,15 +51,15 @@ const PopUpEmail = ({duration = false, onClose}) => {
     if (onClose) onClose();
   };
 
-  const handleCloseUp = (e) => {
-    if (e.contains("popup-email-overlay")) {
-        closePopup();
+  const handleOverlayClick = (event) => {
+    if (event.target === event.currentTarget) {
+      closePopup();
     }
-  }
+  };
 
   return (
-    <div className={`popup-email-overlay ${popupIsActive ? "active" : ""}`} onClick={(e) => handleCloseUp(e.target.classList)}>
-        <div className="popup-container" onClick={(e) => console.log(e.target)}>
+    <div className={`popup-email-overlay ${popupIsActive ? "active" : ""}`} onClick={handleOverlayClick}>
+        <div className="popup-container">
             <div className="wrapper">
                 <div className="exit" onClick={closePopup}>
                     <img src={Exit} alt="" />
@@ -78,7 +85,7 @@ const PopUpEmail = ({duration = false, onClose}) => {
                                 />
                             </div>
                             <div className="button" onClick={handleSubmit}>
-                                <Button content={"Get Your Free PLan"} bg_color={"yellowMain"} text_color={"#fff"} />
+                                <Button content={"Get Your Free Plan"} bg_color={"yellowMain"} text_color={"#fff"} />
                             </div>
                         </>
                     )}

@@ -4,11 +4,13 @@ const OnboardingContext = createContext();
 
 export const OnboardingProvider = ({ children }) => {
   const [onboardingData, setOnboardingData] = useState({
+    journeyId: null,
     travelStyle: null,       // step 1
     travelCompanion: null,   // step 2: example { type, adults, children }
     travelInterest: [],      // step 3
     budgetOption: null,      // step 4: "Basic" | "Standard" | "Luxury"
     tripDays: null,          // step 4: number of days
+    planData: null,          // AI-generated plan response
   });
 
   const updateData = (field, value) => {
@@ -17,11 +19,13 @@ export const OnboardingProvider = ({ children }) => {
 
   const resetData = () => {
     setOnboardingData({
+      journeyId: null,
       travelStyle: null,
       travelCompanion: null,
       travelInterest: [],
       budgetOption: null,
       tripDays: null,
+      planData: null,
     });
   };
 
