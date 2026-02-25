@@ -11,7 +11,7 @@ import nigarImg from '../../assets/images/nigar-expert.jpg';
 const ExpertAbout = () => {
     const navigate = useNavigate();
 
-   const handleBack = () => {
+    const handleBack = () => {
         navigate(-1);
     };
 
@@ -32,7 +32,7 @@ const ExpertAbout = () => {
 
             <main className="plan-wrapper">
                 <div className="title-group">
-                    <h1>Your Azerbaijan Journey</h1>
+                    <h1>Your Baku Journey</h1>
                     <p>5-Day Personalized Itinerary</p>
                 </div>
 
