@@ -89,10 +89,20 @@ const Onboarding = () => {
       setSearchParams({ step: "1" }, { replace: true });
     }
 
-    // Save journeyId to context when coming from Welcome page
-    if (location.state?.journeyId && !onboardingData.journeyId) {
-      updateData("journeyId", location.state.journeyId);
-      console.log("Journey ID saved:", location.state.journeyId);
+    // Save journeyId to context and localStorage when coming from Welcome page
+    if (location.state?.journeyId) {
+      const jId = location.state.journeyId;
+      updateData("journeyId", jId);
+      localStorage.setItem("journeyId", jId);
+      console.log("Journey ID saved from state:", jId);
+    }
+    // If not in state but exists in localStorage, recover it
+    else if (!onboardingData.journeyId) {
+      const savedId = localStorage.getItem("journeyId");
+      if (savedId) {
+        updateData("journeyId", savedId);
+        console.log("Journey ID recovered from localStorage:", savedId);
+      }
     }
   }, [location.state]);
 
@@ -193,16 +203,32 @@ const Onboarding = () => {
       return;
     }
 
+    if (!onboardingData.journeyId) {
+      toast.error("Session expired. Returning to home...");
+      setTimeout(() => navigate("/"), 2000);
+      return;
+    }
+
     setLoading(true);
 
     try {
-      await api.put("/V1/journeys/step4", {
-        journeyId: onboardingData.journeyId,
-        budgetType: onboardingData.budgetOption.toUpperCase(),
-        tripDays: onboardingData.tripDays,
-      });
+      // Try to update step 4. If it's already completed, we ignore the error and try to get the plan anyway.
+      try {
+        await api.put("/V1/journeys/step4", {
+          journeyId: onboardingData.journeyId,
+          budgetType: onboardingData.budgetOption.toUpperCase(),
+          tripDays: onboardingData.tripDays,
+        });
+      } catch (putError) {
+        // If it's already completed, that's fine, we can still attempt to get the plan
+        if (!putError.message?.includes("completed")) {
+          throw putError;
+        }
+        console.log("Journey already marked as completed on server, proceeding to fetch plan.");
+      }
 
       const planResponse = await api.post("/api/ai/get-plan", {
+        journeyId: onboardingData.journeyId,
         adultsCount: onboardingData.travelCompanion.adults,
         budgetType: onboardingData.budgetOption.toUpperCase(),
         childrenCount:
@@ -217,11 +243,13 @@ const Onboarding = () => {
       });
 
       updateData("planData", planResponse);
+      localStorage.removeItem("journeyId"); // Clear ID upon successful completion
       setLoading(false);
       navigate("/get-plan");
     } catch (error) {
       console.error("Error creating journey:", error);
-      toast.error("Something went wrong. Please try again.");
+      const msg = error.message || "Something went wrong. Please try again.";
+      toast.error(msg);
       setLoading(false);
     }
   };

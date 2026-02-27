@@ -347,11 +347,23 @@
     align-items: center;
     gap: 6px;
     font-weight: 600;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.guide-selected.selected {
+    color: #00A63E !important;
+}
+
+.guide-selected.selected .check-icon {
+    color: #00A63E !important;
+    filter: drop-shadow(0 0 4px rgba(0, 166, 62, 0.4));
 }
 
 .check-icon {
     color: var(--brand-gold);
     filter: drop-shadow(0 0 4px rgba(215, 154, 77, 0.4));
+    transition: color 0.3s ease;
 }
 
 .change-guide {

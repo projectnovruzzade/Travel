@@ -32,14 +32,14 @@ const Footer = () => {
         {/* Right Section: Contact Information */}
         <div className="footer-right">
           <h4 className="contact-title">Contact Information</h4>
-          <div className="contact-item">
+          <a href="https://wa.me/994558246769" target="_blank" rel="noopener noreferrer" className="contact-item" style={{ textDecoration: 'none', color: 'inherit' }}>
             <IoCallOutline className="icon" />
             <span>+994558246769 (WhatsApp)</span>
-          </div>
-          <div className="contact-item">
+          </a>
+          <a href="mailto:musazadegulnaz6@gmail.com" className="contact-item" style={{ textDecoration: 'none', color: 'inherit' }}>
             <IoMailOutline className="icon" />
             <span>musazadegulnaz6@gmail.com</span>
-          </div>
+          </a>
         </div>
       </div>
 
