@@ -311,7 +311,248 @@ header nav {
   background: rgba(217, 217, 217, 1);
 }
 
-/* RESPONSIVE: Footer */
+
+// ! DASHBOARD COMPONENTS
+// ! ASIDE
+#admin-layout .dashboard-aside {
+  width: 256px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  height: 100%;
+  background: rgba(255, 255, 255, 1);
+  border-right: 2px solid rgba(229, 231, 235, 1);
+}
+
+#admin-layout .wrapper-content {
+  background: rgba(249, 250, 251, 1);
+  width: calc(100% - 256px);
+  margin-left: 256px;
+}
+
+
+#admin-layout .aside-content {
+  padding: 24px;
+  margin-bottom: 24px;
+
+  .content-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+  }
+
+  .content-desc {
+    color: $secondary-text;
+  }
+}
+
+#admin-layout .aside-nav nav ul li {
+  padding: 7px 0;
+  text-align: center;
+  margin-bottom: 3px;
+  transition: .2s all;
+}
+
+#admin-layout .aside-nav nav ul li:hover,
+#admin-layout .aside-nav nav ul li.active {
+  background-image: linear-gradient(to right, rgba(43, 127, 255, 1),rgba(79, 57, 246, 1));
+}
+
+
+#admin-layout .aside-nav nav ul li:hover a,
+#admin-layout .aside-nav nav ul li.active a {
+  color: #fff;
+}
+
+#admin-layout .aside-nav nav ul li:hover a .icon,
+#admin-layout .aside-nav nav ul li.active a .icon {
+  fill: #fff;
+}
+
+#admin-layout .aside-nav nav ul li a {
+  color: rgba(54, 65, 83, 1);
+  font-weight: 500;
+  font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  width: 100%;
+
+  .icon {
+    width: 20px;
+    height: 20px;
+    fill: rgba(54, 65, 83, 1);
+    flex: 1;
+  }
+
+  img {
+    width: 20px;
+    height: 20px;
+    flex: 1;
+  }
+
+  .text {
+    flex: 2;
+    text-align: left;
+  }
+}
+
+// ! HEADER
+#admin-layout .dashboard-header {
+  background: #fff;
+  padding: 1.2rem 2rem;
+  border-bottom: 2px solid rgba(229, 231, 235, 1);
+}
+
+
+#admin-layout .dashboard-header .wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#admin-layout .dashboard-header .content-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+#admin-layout .dashboard-header .features {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  .language-icon {
+    width: 24px;
+    height: 24px;
+    fill: rgba(74, 85, 101, 1);
+  }
+
+  .language-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px;
+    border-radius: 12px;
+    background: #e5e7eb;
+
+    button {
+      min-width: 35px;
+      height: 25px;
+      border: none;
+      border-radius: 8px;
+      color: #4b5563;
+      background: transparent;
+      font-size: 0.8rem;
+      line-height: 1;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+
+      &.active {
+        background: #fff;
+        color: #1f2937;
+        box-shadow: 0 1px 2px rgba(15, 23, 42, 0.18);
+      }
+
+      &:focus-visible {
+        outline: 2px solid #2563eb;
+        outline-offset: 1px;
+      }
+    }
+  }
+
+  .theme-toggle {
+    padding: 5px;
+    // height: 40px;
+    width: 40px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    background: #fff;
+    color: #364153;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &.active {
+      background: #1f2937;
+      border-color: #1f2937;
+      color: #f8fafc;
+    }
+
+    &:focus-visible {
+      outline: 2px solid #2563eb;
+      outline-offset: 1px;
+    }
+  }
+}
+
+body.dashboard-dark #admin-layout .dashboard-aside {
+  background: rgba(30, 41, 57, 1);
+  border-right-color: rgba(54, 65, 83, 1);
+}
+
+body.dashboard-dark #admin-layout .wrapper-content {
+  background: rgba(16, 24, 40, 1);
+}
+
+body.dashboard-dark #admin-layout .aside-content .content-title,
+body.dashboard-dark #admin-layout .dashboard-header .content-title {
+  color: #f8fafc;
+}
+
+body.dashboard-dark #admin-layout .aside-content .content-desc {
+  color: #94a3b8;
+}
+
+body.dashboard-dark #admin-layout .aside-nav nav ul li a {
+  color: #cbd5e1;
+}
+
+body.dashboard-dark #admin-layout .aside-nav nav ul li a .icon {
+  fill: #cbd5e1;
+}
+
+body.dashboard-dark #admin-layout .dashboard-header {
+  background: rgba(30, 41, 57, 1);
+  border-bottom: 1px solid #1f2937;
+}
+
+body.dashboard-dark #admin-layout .dashboard-header .features .language-icon {
+  fill: #cbd5e1;
+}
+
+body.dashboard-dark #admin-layout .dashboard-header .features .language-toggle {
+  background: #1f2937;
+}
+
+body.dashboard-dark #admin-layout .dashboard-header .features .language-toggle button {
+  color: #cbd5e1;
+}
+
+body.dashboard-dark #admin-layout .dashboard-header .features .language-toggle button.active {
+  background: #0f172a;
+  color: #f8fafc;
+  box-shadow: none;
+}
+
+body.dashboard-dark #admin-layout .dashboard-header .features .theme-toggle {
+  border-color: #374151;
+  background: #111827;
+  color: #cbd5e1;
+}
+
+body.dashboard-dark #admin-layout .dashboard-header .features .theme-toggle.active {
+  background: #2563eb;
+  border-color: #2563eb;
+  color: #fff;
+}
+
+/* ! RESPONSIVE: Footer */
 @media (max-width: 768px) {
   .site-footer {
     padding: 30px 15px;
@@ -402,6 +643,26 @@ header nav {
   .logo-part .logo img {
     width: 55px;
   }
+
+  #admin-layout .dashboard-header {
+    padding: 1rem 1.2rem;
+  }
+
+  #admin-layout .dashboard-header .wrapper {
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  #admin-layout .dashboard-header .features {
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  #admin-layout .dashboard-header .features .language-toggle button {
+    min-width: 62px;
+    height: 48px;
+    font-size: 1.5rem;
+  }
 }
 
 @media (max-width: 500px) {
@@ -420,6 +681,33 @@ header nav {
 
   .wrapper .text-part {
     padding: 1.5rem 1rem;
+  }
+
+  #admin-layout .dashboard-header .features {
+    gap: 8px;
+  }
+
+  #admin-layout .dashboard-header .features .language-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  #admin-layout .dashboard-header .features .language-toggle {
+    padding: 3px;
+    border-radius: 12px;
+  }
+
+  #admin-layout .dashboard-header .features .language-toggle button {
+    min-width: 52px;
+    height: 40px;
+    border-radius: 9px;
+    font-size: 1.2rem;
+  }
+
+  #admin-layout .dashboard-header .features .theme-toggle {
+    min-width: 74px;
+    height: 36px;
+    font-size: 0.8rem;
   }
 }
 

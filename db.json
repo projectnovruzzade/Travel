@@ -1,0 +1,94 @@
+{
+  "stats": {
+    "totalUsers": 190,
+    "onboardedUsers": 120,
+    "activeUsersPercentage": 75.0,
+    "averageJourneyDuration": 5.4,
+    "overallConversionRate": 75.0
+  },
+
+  "budgets": [
+    { "label": "Basic", "count": 40 },
+    { "label": "Standard", "count": 55 },
+    { "label": "Luxury", "count": 25 }
+  ],
+  "durations": [
+    { "label": "1-3 days", "count": 20 },
+    { "label": "4-7 days", "count": 60 },
+    { "label": "8-14 days", "count": 30 },
+    { "label": "14+ days", "count": 10 }
+  ],
+  "interest": [
+    {
+      "name": "Nature",
+      "userCount": 1729,
+      "percentage": 68
+    },
+    {
+      "name": "City",
+      "userCount": 1322,
+      "percentage": 52
+    },
+    {
+      "name": "History",
+      "userCount": 1144,
+      "percentage": 45
+    },
+    {
+      "name": "Gastronomy",
+      "userCount": 966,
+      "percentage": 38
+    },
+    {
+      "name": "Culture",
+      "userCount": 1068,
+      "percentage": 42
+    },
+    {
+      "name": "Adventure",
+      "userCount": 1399,
+      "percentage": 55
+    }
+  ],
+
+  "interests": [
+    {
+      "name": "Gastronomy",
+      "userCount": 15,
+      "percentage": 26.785714285714285
+    },
+    {
+      "name": "City",
+      "userCount": 14,
+      "percentage": 25
+    },
+    {
+      "name": "History",
+      "userCount": 11,
+      "percentage": 19.642857142857142
+    },
+    {
+      "name": "Adventure",
+      "userCount": 9,
+      "percentage": 16.071428571428573
+    },
+    {
+      "name": "Nature",
+      "userCount": 9,
+      "percentage": 16.071428571428573
+    },
+    {
+      "name": "Culture",
+      "userCount": 4,
+      "percentage": 7.142857142857142
+    }
+  ],
+  "travelerTypes": [
+    { "travelerType": "Solo", "userCount": 35, "percentage": 29.17 },
+    { "travelerType": "Couple", "userCount": 42, "percentage": 35.0 },
+    { "travelerType": "Friends", "userCount": 25, "percentage": 20.83 },
+    { "travelerType": "Family", "userCount": 18, "percentage": 15.0 },
+    { "travelerType": "Active", "userCount": 1577, "percentage": 62 },
+    { "travelerType": "Passive", "userCount": 966, "percentage": 38 }
+  ]
+}

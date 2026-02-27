@@ -1,8 +1,8 @@
 import { Routes, Route } from 'react-router-dom';
-import UserLayout from './layout/UserLayout.jsx'
 
 import "./index.scss";
 
+import UserLayout from './layout/UserLayout.jsx'
 import Home from './pages/Home/index.jsx'
 import Onboarding from './pages/Onboarding/index.jsx'
 import GetPlan from './pages/GetPlan/GetPlan.jsx'
@@ -12,6 +12,11 @@ import Policy from './pages/Policy/index.jsx'
 import Error from './pages/Error/index.jsx'
 
 import AdminLayout from './layout/AdminLayout.jsx'
+import Views from './pages/Views/index.jsx';
+import Statistics from './pages/Statistics/index.jsx';
+import Users from './pages/Users/index.jsx';
+import Trends from './pages/Trends/index.jsx';
+import Setting from './pages/Settings/index.jsx';
 
 
 function App() {
@@ -20,6 +25,11 @@ function App() {
     <>
       <Routes>
         <Route path='admin' element={<AdminLayout />}>
+          <Route index element={<Views />} />
+          <Route path='statistics' element={<Statistics />} />
+          <Route path='users' element={<Users />} />
+          <Route path='trends' element={<Trends />} />
+          <Route path='settings' element={<Setting />} />
         </Route>
         <Route path='/' element={<UserLayout />} >
           <Route index element={<Home />} />

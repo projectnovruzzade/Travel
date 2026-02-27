@@ -1,4 +1,4 @@
-const BASE_URL = "https://travelio-production-0316.up.railway.app";
+const BASE_URL = "http://localhost:3000";
 
 const request = async (endpoint, options = {}) => {
   const { method = "GET", body, headers = {} } = options;

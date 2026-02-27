@@ -53,3 +53,12 @@ $green-orginal: #00a63e;
     filter: drop-shadow(0 0 0.438px #D79A4D) drop-shadow(0 0 0.876px #D79A4D) drop-shadow(0 0 3.064px #D79A4D) drop-shadow(0 0 6.129px #D79A4D) drop-shadow(0 0 10.506px #D79A4D) drop-shadow(0 0 18.386px #D79A4D);
   }
 }
+
+
+// ! ADMIN LAYOUT
+#admin-layout {
+  min-height: 100vh;
+  display: flex;
+}
+
+
