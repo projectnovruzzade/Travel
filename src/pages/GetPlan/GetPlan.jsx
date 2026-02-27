@@ -89,7 +89,7 @@ const GetPlan = () => {
             <main className="plan-wrapper">
 
                 <div className="title-group">
-                    <h1>Your Baku Journey</h1>
+                    <h1>Your Azerbaijan Journey </h1>
                     <p>{totalDays}-Day Personalized Itinerary</p>
                 </div>
 
@@ -156,14 +156,19 @@ const GetPlan = () => {
                             <p>Don't worry, we can help you find the perfect accommodation</p>
                         </div>
                     </div>
-                    <button className="explore-hotels-cta">Explore Hotels</button>
+                    <button
+                        className="explore-hotels-cta"
+                        onClick={() => window.open("https://www.booking.com", "_blank")}
+                    >
+                        Explore Hotels
+                    </button>
                 </section>
 
                 {/* OPTIONAL SERVICES */}
                 <section className="optional-services-container">
                     <h2 className="section-label">Optional Services</h2>
                     <div className="services-list">
-                        <div className="service-card">
+                        <div className="service-card" onClick={() => setDuration(true)} style={{ cursor: 'pointer' }}>
                             <div className="service-icon-col">
                                 <IoAirplaneOutline className="service-icon rotated-icon airplane" />
                             </div>

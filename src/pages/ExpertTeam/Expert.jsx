@@ -148,7 +148,7 @@ const Expert = () => {
                             </div>
                         </div>
 
-                        <button className="select-btn" onClick={() => navigate('/expert-about')}>Select Guide</button>
+                        <button className="select-btn" onClick={() => navigate('/expert-about', { state: { expert } })}>Select Guide</button>
                     </div>
                 ))}
             </div>
