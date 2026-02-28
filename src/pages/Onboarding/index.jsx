@@ -89,20 +89,10 @@ const Onboarding = () => {
       setSearchParams({ step: "1" }, { replace: true });
     }
 
-    // Save journeyId to context and localStorage when coming from Welcome page
-    if (location.state?.journeyId) {
-      const jId = location.state.journeyId;
-      updateData("journeyId", jId);
-      localStorage.setItem("journeyId", jId);
-      console.log("Journey ID saved from state:", jId);
-    }
-    // If not in state but exists in localStorage, recover it
-    else if (!onboardingData.journeyId) {
-      const savedId = localStorage.getItem("journeyId");
-      if (savedId) {
-        updateData("journeyId", savedId);
-        console.log("Journey ID recovered from localStorage:", savedId);
-      }
+    // Save journeyId to context when coming from Welcome page
+    if (location.state?.journeyId && !onboardingData.journeyId) {
+      updateData("journeyId", location.state.journeyId);
+      console.log("Journey ID saved:", location.state.journeyId);
     }
   }, [location.state]);
 
@@ -134,66 +124,75 @@ const Onboarding = () => {
   const getErrorMessage = () => {
     switch (currentStep) {
       case 1:
-        return "Zəhmət olmasa səyahət stilinizi seçin!";
+        return "Please choose your travel style!";
       case 2:
-        return "Zəhmət olmasa seçim edin!";
+        return "Please make a choice!";
       case 3:
-        return "Zəhmət olmasa ən çox 3 maraq sahəsi seçin!";
+        return "Please select at most 3 interests!";
       default:
         return "";
     }
   };
 
+  // Returns true if the error is a step-ordering rejection (journey already ahead on server)
+  const isStepOrderError = (error) => {
+    const msg = error?.message || "";
+    return (
+      msg.toLowerCase().includes("expected step") ||
+      msg.toLowerCase().includes("journey is at step") ||
+      msg.toLowerCase().includes("already completed") ||
+      msg.toLowerCase().includes("already at step")
+    );
+  };
+
   const handleNext = async () => {
     if (!isStepValid()) {
       toast.error(getErrorMessage());
-    } else {
+      return;
+    }
+
+    try {
       if (currentStep === 1) {
         // ! step 1
-        try {
-          const response = await api.put("/V1/journeys/step1", {
-            journeyId: onboardingData.journeyId,
-            travelStyle: onboardingData.travelStyle.toUpperCase(),
-          });
-          console.log("Response:", response);
-        } catch (error) {
-          console.error("Error creating journey:", error);
-        }
-      } else if (currentStep == 2) {
+        await api.put("/V1/journeys/step1", {
+          journeyId: onboardingData.journeyId,
+          travelStyle: onboardingData.travelStyle.toUpperCase(),
+        });
+      } else if (currentStep === 2) {
         // ! step 2
-        try {
-          const travelWith = onboardingData.travelCompanion.type.toUpperCase();
-          const adultsCount = onboardingData.travelCompanion.adults;
-          const childrenCount =
-            travelWith === "FAMILY"
-              ? onboardingData.travelCompanion.children
-              : 0;
+        const travelWith = onboardingData.travelCompanion.type.toUpperCase();
+        const adultsCount = onboardingData.travelCompanion.adults;
+        const childrenCount =
+          travelWith === "FAMILY" ? onboardingData.travelCompanion.children : 0;
 
-          const response = await api.put("/V1/journeys/step2", {
-            journeyId: onboardingData.journeyId,
-            travelWith: travelWith,
-            adultsCount: adultsCount,
-            childrenCount: childrenCount,
-          });
-          console.log("Response:", response);
-        } catch (error) {
-          console.error("Error creating journey:", error);
-        }
-      } else if (currentStep == 3) {
+        await api.put("/V1/journeys/step2", {
+          journeyId: onboardingData.journeyId,
+          travelWith: travelWith,
+          adultsCount: adultsCount,
+          childrenCount: childrenCount,
+        });
+      } else if (currentStep === 3) {
         // ! step 3
-        try {
-          const response = await api.put("/V1/journeys/step3", {
-            journeyId: onboardingData.journeyId,
-            interests: onboardingData.travelInterest,
-          });
-          console.log("Response:", response);
-        } catch (error) {
-          console.error("Error creating journey:", error);
-        }
+        await api.put("/V1/journeys/step3", {
+          journeyId: onboardingData.journeyId,
+          interests: onboardingData.travelInterest,
+        });
       }
-
-      setSearchParams({ step: String(currentStep + 1) });
+    } catch (error) {
+      // If the journey is already past this step on the server, silently continue.
+      // This happens when the user goes back and re-submits an already-completed step.
+      if (isStepOrderError(error)) {
+        console.warn(`Step ${currentStep} already submitted on server, navigating forward.`);
+        console.log(error)
+      } else {
+        // Real error — show to user and do NOT navigate forward
+        console.error("Error submitting step:", error);
+        toast.error(error.message || "Something went wrong. Please try again.");
+        return;
+      }
     }
+
+    setSearchParams({ step: String(currentStep + 1) });
   };
 
   // ! LOADING
@@ -203,32 +202,25 @@ const Onboarding = () => {
       return;
     }
 
-    if (!onboardingData.journeyId) {
-      toast.error("Session expired. Returning to home...");
-      setTimeout(() => navigate("/"), 2000);
-      return;
-    }
-
     setLoading(true);
 
     try {
-      // Try to update step 4. If it's already completed, we ignore the error and try to get the plan anyway.
+      // Try to submit step4. If journey is already past this step, ignore the error.
       try {
         await api.put("/V1/journeys/step4", {
           journeyId: onboardingData.journeyId,
           budgetType: onboardingData.budgetOption.toUpperCase(),
           tripDays: onboardingData.tripDays,
         });
-      } catch (putError) {
-        // If it's already completed, that's fine, we can still attempt to get the plan
-        if (!putError.message?.includes("completed")) {
-          throw putError;
+      } catch (step4Error) {
+        if (isStepOrderError(step4Error)) {
+          console.warn("Step 4 already submitted on server, proceeding to get plan.");
+        } else {
+          throw step4Error;
         }
-        console.log("Journey already marked as completed on server, proceeding to fetch plan.");
       }
 
       const planResponse = await api.post("/api/ai/get-plan", {
-        journeyId: onboardingData.journeyId,
         adultsCount: onboardingData.travelCompanion.adults,
         budgetType: onboardingData.budgetOption.toUpperCase(),
         childrenCount:
@@ -243,13 +235,11 @@ const Onboarding = () => {
       });
 
       updateData("planData", planResponse);
-      localStorage.removeItem("journeyId"); // Clear ID upon successful completion
       setLoading(false);
       navigate("/get-plan");
     } catch (error) {
       console.error("Error creating journey:", error);
-      const msg = error.message || "Something went wrong. Please try again.";
-      toast.error(msg);
+      toast.error(error.message || "Something went wrong. Please try again.");
       setLoading(false);
     }
   };

@@ -1,4 +1,4 @@
-﻿import { useEffect, useMemo, useState } from "react";
+import { createElement, useEffect, useMemo, useState } from "react";
 import "./style.scss";
 
 import UsersIcon from "../../assets/icons/icons8-users.svg?react";
@@ -10,6 +10,9 @@ import api from "../../services/api";
 import UsersInfoContent from "./UsersInfoContent";
 import InterestStatsContent from "./InterestStatsContent";
 import TravelerTypesContent from "./TravelerTypesContent";
+import OnboardingGuideContent from "./OnboardingGuideContent";
+import OptionalServicesContent from "./OptionalServicesContent";
+import GuideSelectionStatsContent from "./GuideSelectionStatsContent";
 
 const toFiniteNumber = (value) => {
   const numericValue = Number(value);
@@ -144,11 +147,11 @@ const Views = () => {
       </div>
 
       <div className="dashboard-cart-content">
-        {cards.map(({ id, title, value, change, icon: CardIcon, variant }) => (
+        {cards.map(({ id, title, value, change, icon, variant }) => (
           <article key={id} className={`dashboard-card ${variant}`}>
             <div className="dashboard-card-top">
               <div className="dashboard-card-icon-box">
-                <CardIcon className="dashboard-card-icon" />
+                {createElement(icon, { className: "dashboard-card-icon" })}
               </div>
               <IncreaseIcon className="dashboard-card-trend-icon" />
             </div>
@@ -163,8 +166,12 @@ const Views = () => {
       <UsersInfoContent budgets={budgets} durations={durations} />
       <InterestStatsContent interests={interest} />
       <TravelerTypesContent travelerTypes={travelerTypes} stats={stats} />
+      <OnboardingGuideContent stats={stats} />
+      <OptionalServicesContent stats={stats} />
+      <GuideSelectionStatsContent stats={stats} />
     </section>
   );
 };
 
 export default Views;
+

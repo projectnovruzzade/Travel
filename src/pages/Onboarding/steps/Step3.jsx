@@ -16,7 +16,7 @@ const Step3 = () => {
         return prev.filter((item) => item !== interest);
       }
       if (prev.length >= 3) {
-        toast.error("You can select up to 3 interests only!");
+        toast.error("You can select up to 3 interests only!", { id: "interest-limit" });
         return prev;
       }
       return [...prev, interest];

@@ -105,7 +105,9 @@ const Welcome = () => {
               <img src={ai_icon} alt="" />
             </span>
             <span className="text">
-              Design your journey with the power of AI
+              <Link to={"/admin"}>
+                Design your journey with the power of AI
+              </Link>
             </span>
           </div>
           <div className="feature-item">

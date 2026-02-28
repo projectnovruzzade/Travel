@@ -15,7 +15,7 @@ const GetPlan = () => {
     const navigate = useNavigate();
     const [duration, setDuration] = useState(false);
     const [exploreLoading, setExploreLoading] = useState(false);
-    const { onboardingData } = useOnboarding();
+    const { onboardingData, resetData } = useOnboarding();
 
     const planData = onboardingData.planData;
     const days = Array.isArray(planData?.days) ? planData.days : [];
@@ -24,7 +24,8 @@ const GetPlan = () => {
     const firstDayItinerary = Array.isArray(firstDay?.itinerary) ? firstDay.itinerary : [];
 
     const handleBack = () => {
-        navigate(-1);
+        navigate("/");
+        resetData();
     };
 
     const handleExplore = async () => {
