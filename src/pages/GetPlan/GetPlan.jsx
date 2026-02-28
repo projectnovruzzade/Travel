@@ -6,6 +6,7 @@ import { FiHome, FiClock } from 'react-icons/fi';
 import { IoAirplaneOutline } from 'react-icons/io5';
 
 import PopUpEmail from '../../components/PopUpEmail';
+import PopUpContact from '../../components/PopUpContact';
 import { useState } from 'react';
 import { useOnboarding } from '../../context/OnboardingContext';
 import api from '../../services/api';
@@ -14,6 +15,7 @@ import api from '../../services/api';
 const GetPlan = () => {
     const navigate = useNavigate();
     const [duration, setDuration] = useState(false);
+    const [contactOpen, setContactOpen] = useState(false);
     const [exploreLoading, setExploreLoading] = useState(false);
     const { onboardingData, resetData } = useOnboarding();
 
@@ -79,6 +81,7 @@ const GetPlan = () => {
             <div className="background-image"></div>
             <div className="page-overlay"></div>
             <PopUpEmail duration={duration} onClose={() => setDuration(false)} plan={planData} />
+            <PopUpContact duration={contactOpen} onClose={() => setContactOpen(false)} plan={planData} />
 
             <div className="back-btn-container">
                 <button className="breadcrumb-back" onClick={handleBack}>
@@ -169,7 +172,7 @@ const GetPlan = () => {
                 <section className="optional-services-container">
                     <h2 className="section-label">Optional Services</h2>
                     <div className="services-list">
-                        <div className="service-card" onClick={() => setDuration(true)} style={{ cursor: 'pointer' }}>
+                        <div className="service-card" onClick={() => setContactOpen(true)} style={{ cursor: 'pointer' }}>
                             <div className="service-icon-col">
                                 <IoAirplaneOutline className="service-icon rotated-icon airplane" />
                             </div>

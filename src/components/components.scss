@@ -170,7 +170,8 @@ header nav {
 
 // ! POPUP
 
-.popup-email-overlay {
+.popup-email-overlay,
+.popup-contact-overlay {
   position: fixed;
   width: 100%;
   height: 100vh;
@@ -184,7 +185,8 @@ header nav {
   }
 }
 
-.popup-email-overlay .popup-container {
+.popup-email-overlay .popup-container,
+.popup-contact-overlay .popup-container {
   position: relative;
   top: 50%;
   left: 50%;
@@ -356,7 +358,7 @@ header nav {
 
 #admin-layout .aside-nav nav ul li:hover,
 #admin-layout .aside-nav nav ul li.active {
-  background-image: linear-gradient(to right, rgba(43, 127, 255, 1),rgba(79, 57, 246, 1));
+  background-image: linear-gradient(to right, rgba(43, 127, 255, 1), rgba(79, 57, 246, 1));
 }
 
 
@@ -374,10 +376,10 @@ header nav {
   color: rgba(54, 65, 83, 1);
   font-weight: 500;
   font-size: 0.9rem;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
   width: 100%;
 
   .icon {
@@ -666,7 +668,9 @@ body.dashboard-dark #admin-layout .dashboard-header .features .theme-toggle.acti
 }
 
 @media (max-width: 500px) {
-  .popup-email-overlay .popup-container {
+
+  .popup-email-overlay .popup-container,
+  .popup-contact-overlay .popup-container {
     width: 95%;
   }
 
@@ -733,6 +737,7 @@ body.dashboard-dark #admin-layout .dashboard-header .features .theme-toggle.acti
   .wrapper .text-part .button .btn_badge {
     font-size: 0.7rem;
   }
+
   .wrapper .text-part .try-again-badge {
     font-size: 0.6rem;
   }

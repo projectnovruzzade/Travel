@@ -38,9 +38,6 @@ const Welcome = () => {
       let journeyId = response.id;
       console.log("Response:", journeyId);
 
-      // Store new journeyId and clear any old state
-      localStorage.setItem("journeyId", journeyId);
-
       // Navigate to onboarding with journey ID
       navigate("/onboarding", { state: { journeyId } });
     } catch (error) {
