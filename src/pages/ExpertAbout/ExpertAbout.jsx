@@ -6,6 +6,7 @@ import { FiMail, FiClock, FiHome } from 'react-icons/fi';
 import { LuMapPin, LuUsers } from 'react-icons/lu';
 import { IoAirplaneOutline } from 'react-icons/io5';
 import PopUpEmail from '../../components/PopUpEmail';
+import PopUpContact from '../../components/PopUpContact';
 import api from '../../services/api';
 import { useOnboarding } from '../../context/OnboardingContext';
 import './ExpertAbout.css';
@@ -23,6 +24,7 @@ const ExpertAbout = () => {
     const firstDayItinerary = Array.isArray(firstDay?.itinerary) ? firstDay.itinerary : [];
 
     const [isPopupOpen, setIsPopupOpen] = React.useState(false);
+    const [isContactOpen, setIsContactOpen] = React.useState(false);
     const [exploreLoading, setExploreLoading] = React.useState(false);
     // Form state
     const [email, setEmail] = React.useState("");
@@ -216,7 +218,7 @@ const ExpertAbout = () => {
                 <section className="optional-services-container">
                     <h2 className="section-label">Optional Services</h2>
 
-                    <div className="service-card" onClick={() => setIsPopupOpen(true)} style={{ cursor: 'pointer' }}>
+                    <div className="service-card" onClick={() => setIsContactOpen(true)} style={{ cursor: 'pointer' }}>
                         <div className="service-icon-col">
                             <IoAirplaneOutline className="service-icon airplane" />
                         </div>
@@ -336,6 +338,11 @@ const ExpertAbout = () => {
                 duration={isPopupOpen}
                 onClose={() => setIsPopupOpen(false)}
                 plan={null} // Or actual plan if available in context
+            />
+            <PopUpContact
+                duration={isContactOpen}
+                onClose={() => setIsContactOpen(false)}
+                plan={null}
             />
         </div>
     );
