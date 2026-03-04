@@ -4,12 +4,11 @@ import Button from './Button';
 import Exit from "../assets/icons/exit.svg";
 import api from '../services/api';
 
-const PopUpEmail = ({ duration = false, onClose, plan }) => {
-
+const PopUpContact = ({ duration = false, onClose, plan }) => {
 
     const [popupIsActive, setPopupIsActive] = useState(duration);
-    const [email, setEmail] = useState("");
-    const [errors, setErrors] = useState({ email: "", general: "" });
+    const [phone, setPhone] = useState("");
+    const [errors, setErrors] = useState({ phone: "", general: "" });
 
     useEffect(() => {
         setPopupIsActive(duration);
@@ -17,23 +16,21 @@ const PopUpEmail = ({ duration = false, onClose, plan }) => {
 
     const [status, setStatus] = useState("default"); // "default" | "loading" | "success" | "error"
 
-    const validateEmail = (email) => {
-        return email.length <= 50 && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    const validatePhone = (phone) => {
+        // Allows +, spaces, and 7-20 digits
+        const digitsOnly = phone.replace(/[\s+]/g, "");
+        return /^\d{7,20}$/.test(digitsOnly);
     };
 
-
     const handleSubmit = async () => {
-        let newErrors = { email: "", general: "" };
+        let newErrors = { phone: "", general: "" };
         let hasError = false;
 
-        if (!email) {
-            newErrors.email = "Email cannot be left blank.";
+        if (!phone) {
+            newErrors.phone = "Phone cannot be left blank.";
             hasError = true;
-        } else if (email.length > 50) {
-            newErrors.email = "Email must be a maximum of 50 characters.";
-            hasError = true;
-        } else if (!validateEmail(email)) {
-            newErrors.email = "Please enter a valid email address (text@domain.com).";
+        } else if (!validatePhone(phone)) {
+            newErrors.phone = "Phone must be between 7-20 digits. Only digits, '+' and spaces are allowed.";
             hasError = true;
         }
 
@@ -44,13 +41,13 @@ const PopUpEmail = ({ duration = false, onClose, plan }) => {
         }
 
         setStatus("loading");
-        setErrors({ email: "", general: "" });
+        setErrors({ phone: "", general: "" });
 
         try {
-            await api.post("/api/mail/send-plan", { email, plan });
+            await api.post("/api/mail/send-contact", { phone, plan });
             setStatus("success");
         } catch (error) {
-            console.error("Failed to send plan email:", error);
+            console.error("Failed to send contact info:", error);
             setStatus("error");
             setErrors({ ...newErrors, general: "Failed to send. Please try again later." });
         }
@@ -58,15 +55,15 @@ const PopUpEmail = ({ duration = false, onClose, plan }) => {
 
     const handleTryAgain = () => {
         setStatus("default");
-        setEmail("");
-        setErrors({ email: "", general: "" });
+        setPhone("");
+        setErrors({ phone: "", general: "" });
     };
 
     const closePopup = () => {
         setPopupIsActive(false);
         setStatus("default");
-        setEmail("");
-        setErrors({ email: "", general: "" });
+        setPhone("");
+        setErrors({ phone: "", general: "" });
         if (onClose) onClose();
     };
 
@@ -77,7 +74,7 @@ const PopUpEmail = ({ duration = false, onClose, plan }) => {
     };
 
     return (
-        <div className={`popup-email-overlay ${popupIsActive ? "active" : ""}`} onClick={handleOverlayClick}>
+        <div className={`popup-contact-overlay ${popupIsActive ? "active" : ""}`} onClick={handleOverlayClick}>
             <div className="popup-container">
                 <div className="wrapper">
                     <div className="exit" onClick={closePopup}>
@@ -87,33 +84,33 @@ const PopUpEmail = ({ duration = false, onClose, plan }) => {
                         <img src={PopUpImage} alt="" />
                     </div>
                     <div className="text-part">
-                        {status === "default" || (status === "error" && (errors.email || errors.general)) ? (
+                        {status === "default" || (status === "error" && (errors.phone || errors.general)) ? (
                             <>
                                 <div className="content-title">
-                                    Your travel plan is ready!
+                                    Airport Pickup Service
                                 </div>
                                 <div className="desc">
-                                    Don't lose your plan. Enter your email address to receive your itinerary.
+                                    Please enter your WhatsApp number to arrange your airport transfer.
                                 </div>
                                 <div className="input-content">
-                                    <label style={{ display: 'block', marginBottom: '5px', fontSize: '12px', color: 'black', opacity: 0.8 }}>Email Address</label>
+                                    <label style={{ display: 'block', marginBottom: '5px', fontSize: '12px', color: 'black', opacity: 0.8 }}>WhatsApp Number</label>
                                     <input
                                         type="text"
-                                        placeholder='your.email@example.com'
-                                        value={email}
-                                        maxLength={50}
+                                        placeholder='+994 50 000 00 00'
+                                        value={phone}
+                                        maxLength={20}
                                         style={{
                                             width: '100%',
                                             boxSizing: 'border-box',
-                                            border: errors.email ? '1px solid #f44336' : '1px solid transparent'
+                                            border: errors.phone ? '1px solid #f44336' : '1px solid transparent'
                                         }}
-                                        onChange={(e) => setEmail(e.target.value)}
+                                        onChange={(e) => setPhone(e.target.value.replace(/[^0-9+\s]/g, ""))}
                                     />
-                                    {errors.email && <span className="error-msg" style={{ color: '#f44336', fontSize: '10px', display: 'block', marginTop: '2px' }}>{errors.email}</span>}
+                                    {errors.phone && <span className="error-msg" style={{ color: '#f44336', fontSize: '10px', display: 'block', marginTop: '2px' }}>{errors.phone}</span>}
                                 </div>
                                 {errors.general && <div className="error-msg" style={{ color: '#f44336', fontSize: '12px', marginTop: '10px', textAlign: 'center' }}>{errors.general}</div>}
                                 <div className="button" onClick={handleSubmit} style={{ marginTop: '20px' }}>
-                                    <Button content={"Get Your Free Plan"} bg_color={"yellowMain"} text_color={"#fff"} />
+                                    <Button content={"Confirm Pickup"} bg_color={"yellowMain"} text_color={"#fff"} />
                                 </div>
                             </>
                         ) : null}
@@ -121,10 +118,10 @@ const PopUpEmail = ({ duration = false, onClose, plan }) => {
                         {status === "loading" && (
                             <>
                                 <div className="content-title">
-                                    Sending...
+                                    Processing...
                                 </div>
                                 <div className="desc">
-                                    Please wait while we send your travel plan.
+                                    Please wait while we confirm your request.
                                 </div>
                                 <div className="button loading">
                                     <span className="btn_badge" style={{ backgroundColor: "#222", color: "#fff" }}>Sending...</span>
@@ -135,10 +132,10 @@ const PopUpEmail = ({ duration = false, onClose, plan }) => {
                         {status === "success" && (
                             <>
                                 <div className="content-title">
-                                    Message Sent Successfully!
+                                    Request Received!
                                 </div>
                                 <div className="desc">
-                                    Your travel plan has been sent to your email address. Please check your inbox.
+                                    We have received your WhatsApp number. Our team will contact you shortly.
                                 </div>
                                 <div className="button success">
                                     <span className="btn_badge" style={{ backgroundColor: "#00A63E", color: "#fff" }}>✓ Successfully Sent</span>
@@ -146,13 +143,13 @@ const PopUpEmail = ({ duration = false, onClose, plan }) => {
                             </>
                         )}
 
-                        {status === "error" && !errors.email && !errors.general && (
+                        {status === "error" && !errors.phone && !errors.general && (
                             <>
                                 <div className="content-title">
                                     Oops! Something Went Wrong
                                 </div>
                                 <div className="desc">
-                                    Failed to send your travel plan. Please check your details and try again.
+                                    Failed to send your contact information. Please try again.
                                 </div>
                                 <div className="button error">
                                     <span className="btn_badge" style={{ backgroundColor: "rgba(244, 67, 54, 1)", color: "#fff" }}>✕ Error Occurred</span>
@@ -169,4 +166,4 @@ const PopUpEmail = ({ duration = false, onClose, plan }) => {
     )
 }
 
-export default PopUpEmail
+export default PopUpContact
