@@ -3,7 +3,7 @@ import { useOnboarding } from "../../../context/OnboardingContext";
 import ActiveTravel from "../../../assets/images/active-travel.png";
 import PassiveTravel from "../../../assets/images/passive-travel.png";
 
-const Step1 = ({ onAdvance }) => {
+const Step1 = ({ onAdvance, onDoubleClickAdvance }) => {
   const { onboardingData, updateData } = useOnboarding();
   const userTravelStyle = onboardingData.travelStyle;
 
@@ -11,9 +11,12 @@ const Step1 = ({ onAdvance }) => {
     updateData("travelStyle", value);
   };
 
-  const doubleClickHandle = (value) => () => {
-      updateData("travelStyle", value);
-       console.log("Double clicked:", value);
+  // Double-click: value is passed directly (not read from state) to avoid
+  // stale state — onClick fires twice before onDoubleClick, so state is
+  // already set correctly; we just need to submit + advance.
+  const doubleClickHandle = (value) => (e) => {
+    e.stopPropagation();
+    onDoubleClickAdvance(value);
   };
   return (
     <div className="step-content">

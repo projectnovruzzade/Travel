@@ -37,7 +37,7 @@ const buildOnboardingRows = (stats) => {
       stats?.completedOnboardingUsers,
       stats?.onboardingCompletedUsers,
       stats?.onboardedUsers,
-    ) ?? 1834;
+    ) ?? 0;
 
   const explicitInProgressCount = firstAvailableNumber(
     stats?.inProgressOnboardingUsers,
@@ -47,7 +47,7 @@ const buildOnboardingRows = (stats) => {
   const totalUsers = firstAvailableNumber(stats?.totalUsers);
   const inProgressCount =
     explicitInProgressCount ??
-    (totalUsers !== null && totalUsers >= completedCount ? totalUsers - completedCount : 709);
+    (totalUsers !== null && totalUsers >= completedCount ? totalUsers - completedCount : 0);
 
   const completedPercentFromStats = clampPercent(
     firstAvailableNumber(stats?.completedOnboardingPercentage, stats?.onboardingCompletedPercentage),
@@ -65,8 +65,8 @@ const buildOnboardingRows = (stats) => {
       completedPercentage = Math.round((completedCount / sum) * 100);
       inProgressPercentage = 100 - completedPercentage;
     } else {
-      completedPercentage = 72;
-      inProgressPercentage = 28;
+      completedPercentage = 0;
+      inProgressPercentage = 0;
     }
   }
 
@@ -90,10 +90,10 @@ const buildOnboardingRows = (stats) => {
 
 const buildGuideRows = (stats) => {
   const withGuideCount =
-    firstAvailableNumber(stats?.withGuideUsers, stats?.guideWithUsers, stats?.guidedUsers) ?? 1399;
+    firstAvailableNumber(stats?.withGuideUsers, stats?.guideWithUsers, stats?.guidedUsers) ?? 0;
   const withoutGuideCount =
     firstAvailableNumber(stats?.withoutGuideUsers, stats?.guideWithoutUsers, stats?.unguidedUsers) ??
-    1144;
+    0;
 
   const withGuidePercentFromStats = clampPercent(
     firstAvailableNumber(stats?.withGuidePercentage, stats?.guideWithPercentage),
@@ -111,22 +111,22 @@ const buildGuideRows = (stats) => {
       withGuidePercentage = Math.round((withGuideCount / sum) * 100);
       withoutGuidePercentage = 100 - withGuidePercentage;
     } else {
-      withGuidePercentage = 55;
-      withoutGuidePercentage = 45;
+      withGuidePercentage = 0;
+      withoutGuidePercentage = 0;
     }
   }
 
   return [
     {
       key: "with-guide",
-      label: "Beledci ile",
+      label: "Bələdçi ilə",
       count: withGuideCount,
       percentage: withGuidePercentage,
       colorClass: "green",
     },
     {
       key: "without-guide",
-      label: "Beledcisiz",
+      label: "Bələdçisiz",
       count: withoutGuideCount,
       percentage: withoutGuidePercentage,
       colorClass: "pink",

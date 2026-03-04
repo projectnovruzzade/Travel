@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./style.scss";
 import MagicIcon from "../../assets/icons/magic-icon.svg";
-import toast from "react-hot-toast";
+import { toast } from "react-toastify";
 
 import {
   Link,
@@ -50,8 +50,32 @@ const Onboarding = () => {
     }
   };
 
+  // Handles Step1 double-click: submits step1 to API and advances.
+  // Works both on first visit and when user comes back and re-selects.
+  const handleStep1DoubleClick = async (value) => {
+    // Update context immediately with the double-clicked value
+    updateData("travelStyle", value);
+
+    try {
+      await api.put("/V1/journeys/step1", {
+        journeyId: onboardingData.journeyId,
+        travelStyle: value.toUpperCase(),
+      });
+    } catch (error) {
+      if (isStepOrderError(error)) {
+        // Step1 was already submitted on server (user came back) — advance anyway
+        console.warn("Step 1 already submitted on server, navigating forward.");
+      } else {
+        toast.error(error.message || "Something went wrong. Please try again.", { toastId: "step-error" });
+        return;
+      }
+    }
+
+    setSearchParams({ step: "2" });
+  };
+
   const steps = [
-    { label: "1", component: <Step1 onAdvance={goToNextStep} /> },
+    { label: "1", component: <Step1 onAdvance={goToNextStep} onDoubleClickAdvance={handleStep1DoubleClick} /> },
     { label: "2", component: <Step2 /> },
     { label: "3", component: <Step3 /> },
     { label: "4", component: <Step4 /> },
@@ -147,7 +171,7 @@ const Onboarding = () => {
 
   const handleNext = async () => {
     if (!isStepValid()) {
-      toast.error(getErrorMessage());
+      toast.error(getErrorMessage(), { toastId: "step-validation" });
       return;
     }
 
@@ -187,7 +211,7 @@ const Onboarding = () => {
       } else {
         // Real error — show to user and do NOT navigate forward
         console.error("Error submitting step:", error);
-        toast.error(error.message || "Something went wrong. Please try again.");
+        toast.error(error.message || "Something went wrong. Please try again.", { toastId: "step-error" });
         return;
       }
     }
@@ -198,7 +222,7 @@ const Onboarding = () => {
   // ! LOADING
   const handlerFinish = async () => {
     if (!isStepValid()) {
-      toast.error("Please fill in all required fields!");
+      toast.error("Please fill in all required fields!", { toastId: "step-validation" });
       return;
     }
 
@@ -239,7 +263,7 @@ const Onboarding = () => {
       navigate("/get-plan");
     } catch (error) {
       console.error("Error creating journey:", error);
-      toast.error(error.message || "Something went wrong. Please try again.");
+      toast.error(error.message || "Something went wrong. Please try again.", { toastId: "finish-error" });
       setLoading(false);
     }
   };

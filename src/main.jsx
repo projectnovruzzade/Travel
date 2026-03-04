@@ -3,28 +3,24 @@ import { createRoot } from 'react-dom/client'
 import App from './App.jsx'
 import { BrowserRouter } from 'react-router-dom'
 import { OnboardingProvider } from './context/OnboardingContext.jsx'
-import { Toaster } from 'react-hot-toast'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 createRoot(document.getElementById('root')).render(
     <BrowserRouter>
         <OnboardingProvider>
             <App />
-            <Toaster
+            <ToastContainer
                 position="top-center"
-                toastOptions={{
-                    duration: 3000,
-                    style: {
-                        background: '#333',
-                        color: '#fff',
-                        borderRadius: '10px',
-                    },
-                    error: {
-                        style: {
-                            background: '#ff4d4d',
-                            color: '#fff',
-                        },
-                    },
-                }}
+                autoClose={3000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="dark"
+                limit={1}
             />
         </OnboardingProvider>
     </BrowserRouter>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import toast from "react-hot-toast";
+import { toast } from "react-toastify";
 import TravelOption from "../../../components/TravelOption";
 import { useOnboarding } from "../../../context/OnboardingContext";
 import TrueIcon from "../../../assets/icons/true-icon.svg"
@@ -16,7 +16,7 @@ const Step3 = () => {
         return prev.filter((item) => item !== interest);
       }
       if (prev.length >= 3) {
-        toast.error("You can select up to 3 interests only!", { id: "interest-limit" });
+        toast.error("You can select up to 3 interests only!", { toastId: "interest-limit" });
         return prev;
       }
       return [...prev, interest];

@@ -38,14 +38,14 @@ const buildServiceItems = (stats) => {
       stats?.airportPickupUsers,
       stats?.airportTransferUsers,
       stats?.optionalServices?.airportPickup?.selectedUsers,
-    ) ?? 1475;
+    ) ?? 0;
   const localGuideCount =
     firstAvailableNumber(
       stats?.localGuideSupportSelectedUsers,
       stats?.localGuideSelectedUsers,
       stats?.localGuideUsers,
       stats?.optionalServices?.localGuide?.selectedUsers,
-    ) ?? 1144;
+    ) ?? 0;
 
   const airportPercent =
     clampPercent(
@@ -54,7 +54,7 @@ const buildServiceItems = (stats) => {
         stats?.airportTransferPercentage,
         stats?.optionalServices?.airportPickup?.percentage,
       ),
-    ) ?? 58;
+    ) ?? 0;
   const localGuidePercent =
     clampPercent(
       firstAvailableNumber(
@@ -62,7 +62,7 @@ const buildServiceItems = (stats) => {
         stats?.localGuidePercentage,
         stats?.optionalServices?.localGuide?.percentage,
       ),
-    ) ?? 45;
+    ) ?? 0;
 
   return [
     {

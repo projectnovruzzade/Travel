@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import toast from 'react-hot-toast';
+import { toast } from 'react-toastify';
 import { FaArrowLeft, FaStar, FaWhatsapp, FaCheckCircle } from 'react-icons/fa';
 import { FiMail, FiClock, FiHome } from 'react-icons/fi';
 import { LuMapPin, LuUsers } from 'react-icons/lu';
@@ -98,14 +98,11 @@ const ExpertAbout = () => {
     const handleGuideClick = () => {
         setIsSelected(true);
         toast.success("This expert has been chosen successfully", {
+            toastId: "guide-selected",
             style: {
                 border: '1px solid #00A63E',
                 padding: '16px',
                 color: '#00A63E',
-            },
-            iconTheme: {
-                primary: '#00A63E',
-                secondary: '#FFFAEE',
             },
         });
     };
@@ -131,7 +128,7 @@ const ExpertAbout = () => {
             }
         } catch (error) {
             console.error("Error enriching plan:", error);
-            toast.error("Failed to explore destinations. Please try again.");
+            toast.error("Failed to explore destinations. Please try again.", { toastId: "explore-error" });
         } finally {
             setExploreLoading(false);
         }

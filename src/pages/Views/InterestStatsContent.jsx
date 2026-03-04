@@ -40,8 +40,8 @@ const InterestStatsContent = ({ interests }) => {
     <section className="dashboard-interest-content">
       <article className="dashboard-interest-card">
         <div className="dashboard-interest-header">
-          <h3>Maraq Saheleri Statistikasi</h3>
-          <p>Istifadecilerin secdiyi maraq sahelerinin faiz payi</p>
+          <h3>Maraq Sahələri statistikası</h3>
+          <p>İstifadəçilərin seçdiyi maraq sahələrinin faiz payı</p>
         </div>
 
         <div className="dashboard-interest-list">

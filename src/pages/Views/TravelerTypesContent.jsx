@@ -81,7 +81,7 @@ const TravelerTypeCard = ({ item }) => {
 
       <p className="dashboard-traveler-item-title">{item.title}</p>
       <p className={`dashboard-traveler-item-percent ${item.colorClass}`}>{item.percentage}%</p>
-      <p className="dashboard-traveler-item-count">{item.userCount.toLocaleString("en-US")} nefer</p>
+      <p className="dashboard-traveler-item-count">{item.userCount.toLocaleString("en-US")} nəfər</p>
 
       <div className="dashboard-traveler-track">
         <span
@@ -121,7 +121,7 @@ const TravelerTypesContent = ({ travelerTypes, stats }) => {
   return (
     <section className="dashboard-traveler-content">
       <article className="dashboard-traveler-section">
-        <h3 className="dashboard-traveler-section-title">Seyahet Yoldaslari</h3>
+        <h3 className="dashboard-traveler-section-title">Səyahət Yoldaşları</h3>
         <div className="dashboard-traveler-grid companions">
           {companionCards.map((item) => (
             <TravelerTypeCard key={`companion-${item.title}`} item={item} />
@@ -130,7 +130,7 @@ const TravelerTypesContent = ({ travelerTypes, stats }) => {
       </article>
 
       <article className="dashboard-traveler-section">
-        <h3 className="dashboard-traveler-section-title">Seyahet Uslubu</h3>
+        <h3 className="dashboard-traveler-section-title">Səyahət Üslubu</h3>
         <div className="dashboard-traveler-grid styles">
           {styleCards.map((item) => (
             <TravelerTypeCard key={`style-${item.title}`} item={item} />

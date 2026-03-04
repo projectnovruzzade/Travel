@@ -1,4 +1,4 @@
-import { createElement, useEffect, useMemo, useState } from "react";
+﻿import { createElement, useEffect, useMemo, useState } from "react";
 import "./style.scss";
 
 import UsersIcon from "../../assets/icons/icons8-users.svg?react";
@@ -22,9 +22,9 @@ const toFiniteNumber = (value) => {
 const dashboardCardConfig = [
   {
     id: "users",
-    title: "Umumi istifadeciler",
-    fallbackValue: "2,543",
-    change: "+12% artim",
+    title: "Ümumi istifadəçilər",
+    fallbackValue: "0",
+    change: "+12% artım",
     icon: UsersIcon,
     variant: "blue",
     key: "totalUsers",
@@ -35,9 +35,9 @@ const dashboardCardConfig = [
   },
   {
     id: "travel",
-    title: "Seyahetler",
-    fallbackValue: "1,834",
-    change: "+15% artim",
+    title: "Səyahətlər",
+    fallbackValue: "0",
+    change: "+15% artım",
     icon: MapIcon,
     variant: "purple",
     key: "onboardedUsers",
@@ -49,8 +49,8 @@ const dashboardCardConfig = [
   {
     id: "activity",
     title: "Aktivlik",
-    fallbackValue: "89%",
-    change: "+5% artim",
+    fallbackValue: "0%",
+    change: "+5% artım",
     icon: PrizeIcon,
     variant: "pink",
     key: "activeUsersPercentage",
@@ -142,8 +142,8 @@ const Views = () => {
   return (
     <section id="views">
       <div className="section-title">
-        <h2 className={`content-title ${isDarkTheme ? "light-theme" : ""}`}>Umumi Baxis</h2>
-        <p>Seyahet planlamasi statistikasi</p>
+        <h2 className={`content-title ${isDarkTheme ? "light-theme" : ""}`}>Ümumi Baxış</h2>
+        <p>Səyahətlər üzrə statistikalar</p>
       </div>
 
       <div className="dashboard-cart-content">

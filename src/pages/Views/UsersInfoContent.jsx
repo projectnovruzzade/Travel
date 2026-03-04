@@ -12,10 +12,10 @@ const BUDGET_LABELS = {
 };
 
 const DURATION_LABELS = {
-  "1-3 days": "1-3 gun",
-  "4-7 days": "4-7 gun",
-  "8-14 days": "8-14 gun",
-  "14+ days": "14+ gun",
+  "1-3 days": "1-3 gün",
+  "4-7 days": "4-7 gün",
+  "8-14 days": "8-14 gün",
+  "14+ days": "14+ gün",
 };
 
 const toCount = (value) => {
@@ -66,7 +66,7 @@ const UsersInfoCard = ({ title, description, Icon, items }) => {
               </span>
               <p className="dashboard-users-info-label">{item.displayLabel}</p>
               <p className="dashboard-users-info-count">
-                {item.count.toLocaleString("en-US")} <span>istifadeci</span>
+                {item.count.toLocaleString("en-US")} <span>istifadəçi</span>
               </p>
             </div>
 
@@ -90,14 +90,14 @@ const UsersInfoContent = ({ budgets, durations }) => {
   return (
     <div className="dashboard-users-info-content">
       <UsersInfoCard
-        title="Budce Bolgusu"
-        description="Istifadeci budce secimleri"
+        title="Büdcə Bölgüsü"
+        description="İstifadəçinin büdcə seçimi"
         Icon={WorkIcon}
         items={budgetItems}
       />
       <UsersInfoCard
-        title="Seyahet Muddeti"
-        description="Seyahet muddeti secimleri"
+        title="Səyahət Müddəti"
+        description="Səyahət müddəti seçimi"
         Icon={GlobeIcon}
         items={durationItems}
       />
