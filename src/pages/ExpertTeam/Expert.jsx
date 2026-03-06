@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaArrowLeft, FaStar } from 'react-icons/fa';
-import './Expert.css';
+import './Expert.scss';
 
 import elvinImg from '../../assets/images/elvin-expert.png';
 import ayselImg from '../../assets/images/aysel-expert.jpg';

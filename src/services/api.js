@@ -1,4 +1,5 @@
 const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+console.log("API Base URL:", BASE_URL);
 
 const request = async (endpoint, options = {}) => {
   const { method = "GET", body, headers = {} } = options;

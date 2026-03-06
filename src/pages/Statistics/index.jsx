@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
-import './style.css';
+import './style.scss';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -275,7 +275,7 @@ const Statistics = () => {
   return (
     <div className="statistics-container">
       <div className="statistics-header">
-        <h1>Ətraflı Statistika və Analiz</h1>
+        <h2>Ətraflı Statistika və Analiz</h2>
         <p>Detallı məlumat analizi və performans göstəriciləri</p>
       </div>
 

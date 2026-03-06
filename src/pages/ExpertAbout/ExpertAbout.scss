@@ -393,7 +393,7 @@
     color: var(--text-white);
 }
 
-.input-wrapper {
+.contact-form .input-wrapper {
     position: relative;
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -403,12 +403,12 @@
     padding: 0 16px;
 }
 
-.input-icon {
+.contact-form .input-icon {
     font-size: 16px;
     color: var(--text-dim);
 }
 
-.input-wrapper input {
+.contact-form .input-wrapper input {
     background: none;
     border: none;
     color: white;

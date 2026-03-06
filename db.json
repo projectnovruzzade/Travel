@@ -5,22 +5,18 @@
     "activeUsersPercentage": 0,
     "averageJourneyDuration": 0,
     "overallConversionRate": 0,
-
     "completedOnboardingUsers": 0,
     "inProgressOnboardingUsers": 0,
     "completedOnboardingPercentage": 0,
     "inProgressOnboardingPercentage": 0,
-
     "withGuideUsers": 0,
     "withoutGuideUsers": 0,
     "withGuidePercentage": 0,
     "withoutGuidePercentage": 0,
-
     "airportPickupSelectedUsers": 0,
     "airportPickupPercentage": 0,
     "localGuideSupportSelectedUsers": 0,
     "localGuideSupportPercentage": 0,
-
     "guideSelectionStats": [
       {
         "id": "guide-1",
@@ -96,35 +92,129 @@
       }
     ]
   },
-
   "budgets": [
-    { "label": "Basic", "count": 0 },
-    { "label": "Standard", "count": 0 },
-    { "label": "Luxury", "count": 0 }
+    {
+      "label": "Basic",
+      "count": 0
+    },
+    {
+      "label": "Standard",
+      "count": 0
+    },
+    {
+      "label": "Luxury",
+      "count": 0
+    }
   ],
-
   "durations": [
-    { "label": "1-3 days", "count": 0 },
-    { "label": "4-7 days", "count": 0 },
-    { "label": "8-14 days", "count": 0 },
-    { "label": "14+ days", "count": 0 }
+    {
+      "label": "1-3 days",
+      "count": 0
+    },
+    {
+      "label": "4-7 days",
+      "count": 0
+    },
+    {
+      "label": "8-14 days",
+      "count": 0
+    },
+    {
+      "label": "14+ days",
+      "count": 0
+    }
   ],
-
   "interest": [
-    { "name": "Nature",      "userCount": 0, "percentage": 0 },
-    { "name": "City",        "userCount": 0, "percentage": 0 },
-    { "name": "History",     "userCount": 0, "percentage": 0 },
-    { "name": "Gastronomy",  "userCount": 0, "percentage": 0 },
-    { "name": "Culture",     "userCount": 0, "percentage": 0 },
-    { "name": "Adventure",   "userCount": 0, "percentage": 0 }
+    {
+      "name": "Nature",
+      "userCount": 0,
+      "percentage": 0
+    },
+    {
+      "name": "City",
+      "userCount": 0,
+      "percentage": 0
+    },
+    {
+      "name": "History",
+      "userCount": 0,
+      "percentage": 0
+    },
+    {
+      "name": "Gastronomy",
+      "userCount": 0,
+      "percentage": 0
+    },
+    {
+      "name": "Culture",
+      "userCount": 0,
+      "percentage": 0
+    },
+    {
+      "name": "Adventure",
+      "userCount": 0,
+      "percentage": 0
+    }
   ],
-
   "travelerTypes": [
-    { "travelerType": "Solo",    "userCount": 0, "percentage": 0 },
-    { "travelerType": "Couple",  "userCount": 0, "percentage": 0 },
-    { "travelerType": "Friends", "userCount": 0, "percentage": 0 },
-    { "travelerType": "Family",  "userCount": 0, "percentage": 0 },
-    { "travelerType": "Active",  "userCount": 0, "percentage": 0 },
-    { "travelerType": "Passive", "userCount": 0, "percentage": 0 }
+    {
+      "travelerType": "Solo",
+      "userCount": 0,
+      "percentage": 0
+    },
+    {
+      "travelerType": "Couple",
+      "userCount": 0,
+      "percentage": 0
+    },
+    {
+      "travelerType": "Friends",
+      "userCount": 0,
+      "percentage": 0
+    },
+    {
+      "travelerType": "Family",
+      "userCount": 0,
+      "percentage": 0
+    },
+    {
+      "travelerType": "Active",
+      "userCount": 0,
+      "percentage": 0
+    },
+    {
+      "travelerType": "Passive",
+      "userCount": 0,
+      "percentage": 0
+    }
+  ],
+  "userSituations": {
+    "totalUsers": 909,
+    "completedUsers": 414,
+    "inProgressUsers": 89
+  },
+  "users": [
+    {
+      "id": "USR0170",
+      "email": "novruzzadetunar02@gmail.com",
+      "status": "Tamamlanmış",
+      "budget": "Standard",
+      "interests": ["Macəra", "Mədəniyyət"],
+      "companion": "Solo",
+      "guide": false,
+      "airport_transfer": false,
+      "registration_date": "2026-02-11"
+    },
+    {
+      "id": "USR0193",
+      "email": "novruzzadetunar44@gmail.com",
+      "status": "completed",
+      "budget": "Luxury",
+      "interests": ["Macəra", "Mədəniyyət", "Qastronomiya"],
+      "companion": "Solo",
+      "guide": true,
+      "airport_transfer": true,
+      "registration_date": "2026-02-16"
+    }
   ]
 }

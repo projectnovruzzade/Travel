@@ -747,3 +747,91 @@ body.dashboard-dark #admin-layout .dashboard-header .features .theme-toggle.acti
     height: 20px;
   }
 }
+
+// ! INPUT COMPONENT
+.input-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+}
+
+.input-label {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: #374151;
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon {
+  position: absolute;
+  left: 10px;
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+  color: #9ca3af;
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.input-base {
+  width: 100%;
+  border: 1.5px solid rgba(209, 213, 220, 1);
+  border-radius: 8px;
+  background-color: rgba(249, 250, 251, 1);
+  color: #1f2937;
+  font-size: 0.875rem;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  appearance: none;
+
+  &::placeholder {
+    color: #9ca3af;
+  }
+
+  &:focus {
+    border-color: #d79a4d;
+    box-shadow: 0 0 0 3px rgba(215, 154, 77, 0.12);
+    background-color: #fff;
+  }
+}
+
+.input-select {
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%239ca3af' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 32px !important;
+}
+
+// sizes
+.input--sm {
+  height: 32px;
+  padding: 0 10px;
+  font-size: 0.8rem;
+}
+
+.input--md {
+  height: 40px;
+  padding: 0 12px;
+  font-size: 0.875rem;
+}
+
+.input--lg {
+  height: 48px;
+  padding: 0 16px;
+  font-size: 1rem;
+}
+
+// icon offset per size
+.input-wrapper--icon .input--sm { padding-left: 32px; }
+.input-wrapper--icon .input--md { padding-left: 36px; }
+.input-wrapper--icon .input--lg { padding-left: 44px; }

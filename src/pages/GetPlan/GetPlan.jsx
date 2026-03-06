@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import './GetPlan.css';
+import './GetPlan.scss';
 import { FaArrowLeft } from 'react-icons/fa';
 import { LuUsers, LuMapPin } from 'react-icons/lu';
 import { FiHome, FiClock } from 'react-icons/fi';

@@ -9,7 +9,7 @@ import PopUpEmail from '../../components/PopUpEmail';
 import PopUpContact from '../../components/PopUpContact';
 import api from '../../services/api';
 import { useOnboarding } from '../../context/OnboardingContext';
-import './ExpertAbout.css';
+import './ExpertAbout.scss';
 
 import nigarImg from '../../assets/images/nigar-expert.jpg';
 
