@@ -23,7 +23,12 @@ const request = async (endpoint, options = {}) => {
     throw { status: response.status, message: error.message || response.statusText };
   }
 
-  return response.json();
+  const text = await response.text();
+  try {
+    return JSON.parse(text);
+  } catch {
+    return text;
+  }
 };
 
 const api = {

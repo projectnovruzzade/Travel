@@ -48,6 +48,7 @@ const PopUpEmail = ({ duration = false, onClose, plan }) => {
 
         try {
             await api.post("/api/mail/send-plan", { email, plan });
+            console.log("Email sent successfully");
             setStatus("success");
         } catch (error) {
             console.error("Failed to send plan email:", error);
