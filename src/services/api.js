@@ -1,4 +1,5 @@
-const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+// const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+const BASE_URL = "https://travelio-production-0316.up.railway.app";
 console.log("API Base URL:", BASE_URL);
 
 const request = async (endpoint, options = {}) => {
