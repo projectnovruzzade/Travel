@@ -56,6 +56,16 @@ const GetPlan = () => {
         }
     };
 
+    const handleHotels = async () => {
+        if(onboardingData.budgetOption === "Basic") {
+            window.open("https://www.booking.com/hotel/az/sapphire-bayil.html", "_blank");
+        } else if(onboardingData.budgetOption === "Standard") {
+            window.open("https://www.booking.com/hotel/az/jw-marriott-absheron-baku.html", "_blank");
+        } else if(onboardingData.budgetOption === "Luxury") {
+            window.open("https://www.booking.com/Share-4bCGKR", "_blank");
+        }
+    }
+
     if (!planData) {
         return (
             <div className="get-plan-container">
@@ -146,7 +156,7 @@ const GetPlan = () => {
                 </section>
 
                 <div className="action-row">
-                    <button className="see-all-plan-btn" onClick={() => setDuration(true)}>See All Plan</button>
+                    <button className="see-all-plan-btn" onClick={() => setDuration(true)} style = {{ marginTop: "7px" }}>See All Plan</button>
                 </div>
 
                 {/* HOTEL RECOMMENDATION */}
@@ -162,11 +172,7 @@ const GetPlan = () => {
                     </div>
                     <button
                         className="explore-hotels-cta"
-                        onClick={() => {
-                            window.open("https://www.booking.com/hotel/az/jw-marriott-absheron-baku.html", "_blank");
-                            window.open("https://www.booking.com/Share-1WIy5H7", "_blank");
-                            window.open("https://www.booking.com/Share-5ZDomn", "_blank");
-                        }}
+                        onClick={handleHotels}
                     >
                         Explore Hotels
                     </button>
