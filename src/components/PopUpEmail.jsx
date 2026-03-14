@@ -27,7 +27,7 @@ const PopUpEmail = ({ duration = false, onClose, plan }) => {
         let hasError = false;
 
         if (!email) {
-            newErrors.email = "Email cannot be left blank.";
+            newErrors.email = "Email cannot be empty. Please write your email address.";
             hasError = true;
         } else if (email.length > 50) {
             newErrors.email = "Email must be a maximum of 50 characters.";
@@ -97,7 +97,7 @@ const PopUpEmail = ({ duration = false, onClose, plan }) => {
                                     Don't lose your plan. Enter your email address to receive your itinerary.
                                 </div>
                                 <div className="input-content">
-                                    <label style={{ display: 'block', marginBottom: '5px', fontSize: '12px', color: 'black', opacity: 0.8 }}>Email Address</label>
+                                    <label style={{ display: 'block', marginBottom: '5px', fontSize: '12px', color: errors.email ? '#f44336' : 'black', opacity: errors.email ? 1 : 0.8 }}>Email Address</label>
                                     <input
                                         type="text"
                                         placeholder='your.email@example.com'
@@ -108,7 +108,10 @@ const PopUpEmail = ({ duration = false, onClose, plan }) => {
                                             boxSizing: 'border-box',
                                             border: errors.email ? '1px solid #f44336' : '1px solid transparent'
                                         }}
-                                        onChange={(e) => setEmail(e.target.value)}
+                                        onChange={(e) => {
+                                            setEmail(e.target.value);
+                                            if (errors.email) setErrors({ ...errors, email: "" });
+                                        }}
                                     />
                                     {errors.email && <span className="error-msg" style={{ color: '#f44336', fontSize: '10px', display: 'block', marginTop: '2px' }}>{errors.email}</span>}
                                 </div>
