@@ -162,7 +162,11 @@ const GetPlan = () => {
                     </div>
                     <button
                         className="explore-hotels-cta"
-                        onClick={() => window.open("https://www.booking.com", "_blank")}
+                        onClick={() => {
+                            window.open("https://www.booking.com/hotel/az/jw-marriott-absheron-baku.html", "_blank");
+                            window.open("https://www.booking.com/Share-1WIy5H7", "_blank");
+                            window.open("https://www.booking.com/Share-5ZDomn", "_blank");
+                        }}
                     >
                         Explore Hotels
                     </button>
